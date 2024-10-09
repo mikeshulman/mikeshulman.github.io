@@ -17,7 +17,7 @@
   <a href="https://github.com/mikeshulman/narya">Narya</a> is an experimental proof assistant for Higher/Parametric/Displayed Observational Type Theory;
   see the <a href="https://github.com/mikeshulman/narya/blob/master/README.md">README</a> for current features.<br/>
   JsNarya is compiled with <a href="https://ocsigen.org/js_of_ocaml">Js_of_ocaml</a> to run in a browser.
-  Currently only the command-line interactive mode is available, but you can type (or copy and paste) arbitrary code in the "Extra startup" box to be executed before starting interactive mode.
+  Currently only the command-line interactive mode is available, but you can copy and paste arbitrary code in the "Extra startup" box to be executed before starting interactive mode.
   Please <a href="https://github.com/mikeshulman/narya/issues">report bugs</a>.
 </div>
 
@@ -51,6 +51,40 @@
 <script type="text/javascript" src="xterm-readline.js"></script>
 <script type="text/javascript">
 
+  const arity = document.getElementById("arity");
+  const direction = document.getElementById("direction");
+  const internal = document.getElementById("internal");
+  const external = document.getElementById("external");
+  const discreteness = document.getElementById("discreteness");
+  const startup = document.getElementById("startup");
+  // const load = document.getElementById("load");
+
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  if(urlParams.has('arity')) {
+      arity.value = urlParams.get('arity');
+  }
+  if(urlParams.has('direction')) {
+      direction.value = urlParams.get('direction');
+  }
+  if(urlParams.has('internal')) {
+      internal.checked = true;
+  }
+  if(urlParams.has('external')) {
+      external.checked = true;
+  }
+  if(urlParams.has('discreteness')) {
+      discreteness.checked = true;
+  }
+  if(urlParams.has('startup')) {
+      startup.value = urlParams.get('startup');
+  }
+  if(urlParams.has('dtt')) {
+      arity.value = 1;
+      direction.value = 'd';
+      external.checked = true;
+  }
+
   var term = new Terminal({
       cursorBlink: true,
       fontSize: 20,
@@ -81,17 +115,9 @@
   function start() {
       term.clear();
 
-      arity = document.getElementById("arity");
-      direction = document.getElementById("direction");
-      internal = document.getElementById("internal");
-      external = document.getElementById("external");
-      discreteness = document.getElementById("discreteness");
-
-      startup = document.getElementById("startup");
       startupcode = startup.value
 
       // // This would be nice to be able to do, but it's forbidden by cross-site scripting blockers.
-      // load = document.getElementById("load");
       // if(load.value.trim().length > 0) {
       //     response = await fetch(load.value);
       //     if(response.ok) {
