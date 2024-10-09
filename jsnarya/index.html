@@ -38,6 +38,10 @@
 
 <div id="terminal" style="width: 1200px; margin: auto"></div>
 
+<div id="palette" style="width: 1200px; margin: auto">
+</div>
+
+
 </body>
 <script type="text/javascript" src="xterm-readline.js"></script>
 <script type="text/javascript">
@@ -83,6 +87,24 @@
       readLine();
       term.focus();
   }
+
+  function insert(str) {
+      term.input(str);
+      term.focus();
+  }
+
+  const palette = document.getElementById('palette');
+
+  function addToPalette(str) {
+      var b = document.createElement('button');
+      b.textContent = str;
+      b.style = "font-size:1.2em";
+      b.addEventListener('click', function() { insert(str) });
+      palette.appendChild(b);
+  }
+
+  const characters = ['→', '↦', '⤇', '≔', '…', '⁽', '⁾', '⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹', 'ᵃ', 'ᵇ', 'ᶜ', 'ᵈ', 'ᵉ', 'ᶠ', 'ᵍ', 'ʰ', 'ⁱ', 'ʲ', 'ᵏ', 'ˡ', 'ᵐ', 'ⁿ', 'ᵒ', 'ᵖ', '𐞥', 'ʳ', 'ˢ', 'ᵗ', 'ᵘ', 'ᵛ', 'ʷ', 'ˣ', 'ʸ', 'ᶻ', '₀', '₁', '₂', '₃', '₄', '₅', '₆', '₇', '₈', '₉', '×', '⊔', '⊎', '♯', '♭', '♮', 'ℂ', 'ℕ', 'ℝ', 'ℤ', '⟨', '⟩', '⟦', '⟧', '≡', '≤', '≥', '≠', 'α', 'β', 'γ', 'δ', 'ε', 'ζ', 'η', 'θ', 'ι', 'κ', 'λ', 'μ', 'ν', 'ξ', 'ο', 'π', 'ρ', 'σ', 'τ', 'υ', 'φ', 'χ', 'ψ', 'ω', 'Γ', 'Δ', 'Θ', 'Λ', 'Ξ', 'Π', 'Σ', 'Φ', 'Ψ', 'Ω'];
+  characters.forEach(addToPalette);
 
 </script>
 </html>
