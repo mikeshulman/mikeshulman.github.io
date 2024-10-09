@@ -17,7 +17,7 @@
   <a href="https://github.com/mikeshulman/narya">Narya</a> is an experimental proof assistant for Higher/Parametric/Displayed Observational Type Theory;
   see the <a href="https://github.com/mikeshulman/narya/blob/master/README.md">README</a> for current features.<br/>
   JsNarya is compiled with <a href="https://ocsigen.org/js_of_ocaml">Js_of_ocaml</a> to run in a browser.
-  Currently only the command-line interactive mode is available.
+  Currently only the command-line interactive mode is available, but you can type (or copy and paste) arbitrary code in the "Extra startup" box to be executed before starting interactive mode.
   Please <a href="https://github.com/mikeshulman/narya/issues">report bugs</a>.
 </div>
 
@@ -34,7 +34,12 @@
   </tr></table>
 </div>
 
-<p></p>
+<div id="startupdiv" style="width: 1200px; margin: auto">
+  <table cellspacing="5">
+    <!-- <tr><td>Load URL:</td><td><input id="load" type="text" style="width: 1000px"/></td></tr> -->
+    <tr><td>Extra startup:</td><td><textarea id="startup" rows="1" style="width: 1050px"></textarea></td></tr>
+  </table>
+</div>
 
 <div id="terminal" style="width: 1200px; margin: auto"></div>
 
@@ -72,20 +77,42 @@
       setTimeout(readLine);
   }
 
+  // async
   function start() {
+      term.clear();
+
       arity = document.getElementById("arity");
-      arity.disabled = true;
       direction = document.getElementById("direction");
-      direction.disabled = true;
       internal = document.getElementById("internal");
-      internal.disabled = true;
       external = document.getElementById("external");
-      external.disabled = true;
       discreteness = document.getElementById("discreteness");
-      discreteness.disabled = true;
-      Narya.start(arity.value, direction.value, internal.checked, discreteness.checked);
-      readLine();
-      term.focus();
+
+      startup = document.getElementById("startup");
+      startupcode = startup.value
+
+      // // This would be nice to be able to do, but it's forbidden by cross-site scripting blockers.
+      // load = document.getElementById("load");
+      // if(load.value.trim().length > 0) {
+      //     response = await fetch(load.value);
+      //     if(response.ok) {
+      //         startupcode = await response.text() + " " + startupcode;
+      //     }
+      // }
+      
+      err = Narya.start(arity.value, direction.value, internal.checked, discreteness.checked, startupcode);
+      if (!err) {
+          arity.disabled = true;
+          direction.disabled = true;
+          internal.disabled = true;
+          external.disabled = true;
+          discreteness.disabled = true;
+          // load.disabled = true;
+          startup.disabled = true;
+          readLine();
+          term.focus();
+      } else {
+          rl.println("\n" + err + "Please fix the error and reload the page.");
+      }
   }
 
   function insert(str) {
