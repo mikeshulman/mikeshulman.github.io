@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narvi</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src=" https://cdn.jsdelivr.net/npm/interactjs@1.10.27/dist/interact.min.js "></script>
+    <script src="narvi.bc.js"></script>
+</head>
+<body>
+    <div id="palette">
+        <div class="basic intro rule" id="andI" data-rule="andI">∧</div>
+        <div class="basic elim rule" id="andE" data-rule="andE">∧</div>
+        <div class="basic intro rule" id="orI1" data-rule="orI1">∨₁</div>
+        <div class="basic intro rule" id="orI2" data-rule="orI2">∨₂</div>
+        <div class="container rule" id="orE" data-rule="orE">
+          <div class="mid bar"></div>
+          <div class="doubleleft assumption"><div class="subgoallabel">∨</div></div>
+          <div class="doubleright subgoal"></div>
+          <div class="mid midleft"></div>
+          <div class="mid midright"></div>
+        </div>
+        <div class="container rule" id="impI" data-rule="impI">
+          <div class="bottom bar"></div>
+          <div class="singleleft assumption"></div>
+          <div class="singleright subgoal"><div class="subgoallabel">⇒</div></div>
+          <div class="bottomleft"></div>
+          <div class="bottomright"></div>
+        </div>
+        <div class="basic elim rule" id="impE" data-rule="impE">⇒</div>
+        <div class="basic intro rule" id="exI" data-rule="exI"> ∃</div>
+        <div class="basic elim rule" id="exE" data-rule="exE">∃</div>
+        <div class="container rule" id="allI" data-rule="allI">
+          <div class="bottom bar"></div>
+          <div class="singleleft assumption"></div>
+          <div class="singleright subgoal"><div class="subgoallabel">∀</div></div>
+          <div class="bottomleft"></div>
+          <div class="bottomright"></div>
+        </div>
+        <div class="basic elim rule" id="allE" data-rule="allE">∀</div>
+        <div class="basic elim rule" id="negE" data-rule="negE">¬</div>
+        <div class="container rule" id="negI" data-rule="negI">
+          <div class="bottom bar"></div>
+          <div class="singleleft assumption"></div>
+          <div class="singleright subgoal"><div class="subgoallabel">¬</div></div>
+          <div class="bottomleft"></div>
+          <div class="bottomright"></div>
+        </div>
+        <div class="basic rule" style="text-align: left" id="botE" data-rule="botE">⊥</div>
+        <div class="basic rule" style="text-align: right" id="topI" data-rule="topI">⊤</div>
+        <div class="basic rule" style="text-align: center" id="asc" data-rule="asc">🏷</div>
+        <div style="position: absolute; bottom: 10px" id="buttons"><button id="selectLevel">Select Level</button></div>
+    </div>
+    <div id="diagram"></div>
+
+    <div id="currentLevel"></div>
+
+    <div id="levelChooseBG" class="modalbg">
+      <div class="modal" id="levelChooseModal">
+        <div style="text-align: center; font-size: 24px; display: grid; grid-template-columns: 1fr 20px 500px 20px 1fr; margin-bottom: 20px">
+          <div></div>
+          <div id="backWorld" style="cursor: pointer">◀</div>
+          <div id="worldName">Select a level</div>
+          <div id="forwardWorld" style="cursor: pointer">▶</div>
+          <div></div>
+        </div>
+        <p id="chooseLevelWarning" style="display: none; text-align: center">(Choosing a new level clears any existing proof)</p>
+        <div id="worlds">
+        </div>
+        <div style="text-align: center; margin-top: 30px">
+          <button id="cancelChooseLevel" style="font-size: 16px; display: none">Cancel</button>
+          <button id="clearHistory" style="font-size: 16px">Clear History</button><br/>
+        </div>
+      </div>
+    </div>
+
+    <div id="levelSelectBG" class="modalbg">
+      <div class="modal">
+        <h3 style="text-align: center">What do you want to prove?</h3>
+        <span id="setLevelWarning" style="display: none">(Choosing a new level clears any existing proof)</span>
+        <p>Parameters, with types (one per line):</p>
+        <textarea id="parameters" style="width: 100%" rows="3"></textarea>
+        <div id="paramPalette"></div>
+        <p>Variables, with types (one per line):</p>
+        <textarea id="variables" style="width: 100%" rows="3"></textarea>
+        <div id="varPalette"></div>
+        <p>Hypotheses (one per line):</p>
+        <textarea id="hypotheses" style="width: 100%" rows="3"></textarea>
+        <div id="hypPalette"></div>
+        <p>Conclusion:</p>
+        <input type="text" id="conclusion" style="width: 100%; font-family: monospace"/>
+        <div id="conclPalette"></div>
+        <div style="text-align: center; margin-top: 30px">
+          <button id="submitLevel" style="font-size: 16px">Submit</button>
+          <button id="backLevel" style="font-size: 16px">Back</button>
+          <button id="cancelSetLevel" style="font-size: 16px; display: none">Cancel</button><br/>
+        </div>
+      </div>
+    </div>
+
+    <div id="variableBG" class="modalbg">
+      <div class="modal">
+        <h3 style="text-align: center">Choose a new variable name</h3>
+        <p>Variables currently in use:</p>
+        <div id="variableList"></div>
+        <p>New variable:</p>
+        <input type="text" id="newvar" style="width: 100%"/>
+        <div style="text-align: center; margin-top: 30px">
+          <button id="submitVariable" style="font-size: 16px">Submit</button><br/>
+        </div>
+      </div>
+    </div>
+
+    <div id="ascribeBG" class="modalbg">
+      <div class="modal">
+        <h3 style="text-align: center">Ascribe a wire</h3>
+        <p>Ascribe this wire to the following:</p>
+        <input type="text" id="ascribe" style="width: 100%"/>
+        <div style="text-align: center; margin-top: 30px">
+          <button id="submitAscribe" style="font-size: 16px">Submit</button><br/>
+        </div>
+      </div>
+    </div>
+
+    <script src="bundle.js"></script>
+</body>
+</html>
