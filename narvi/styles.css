@@ -59,7 +59,7 @@ body {
 .assumption {
 		float: left;
 		height: 100%;
-		width: 20px;
+		width: 22px;
 		margin-left: 0px;
 		border-style: solid;
 		border-width: 1px;
@@ -100,7 +100,7 @@ body {
 .subgoal {
 		float: right;
 		height: 100%;
-		width: 20px;
+		width: 22px;
 		margin-right: 0px;
 		border-style: solid;
 		border-width: 1px;
@@ -121,6 +121,14 @@ body {
 .subgoallabel {
 		position: absolute;
 		top: 50%;
+		transform: translateY(-50%);
+		text-align: center;
+		width: 100%;
+}
+
+.assumptionlabel {
+		position: absolute;
+		top: 20%;
 		transform: translateY(-50%);
 		text-align: center;
 		width: 100%;
@@ -147,15 +155,15 @@ body {
 }
 
 .midright {
-		width: 20px;
+		width: 8px;
 		height: 20px;
 		position: absolute;
-		right: 10px;
+		right: 18px;
 		background-color: #dddddd;
 }
 
 .midleft {
-		width: 4px;
+		width: 8px;
 		height: 20px;
 		position: absolute;
 		left: 18px;
@@ -257,7 +265,7 @@ body {
 		width: 100%;
 		display: grid;
 		grid-template-columns: repeat(12, 70px);
-		grid-auto-rows: 60px;
+		grid-auto-rows: 40px;
 		gap: 10px;
 		padding: 5px;
 }
@@ -268,7 +276,7 @@ body {
 		justify-content: center;
 		padding: 3px;
 		background-color: #ffffff;
-		font-size: 20px;
+		font-size: 18px;
 		font-family: sans-serif;
 }
 
@@ -309,4 +317,34 @@ body {
 
 .connLabelValue {
 		color: #0000ff;
+}
+
+/* labels on endpoints */
+
+.lowerInputLabel {
+		position: absolute;
+		right: 10px;
+		color: #ff0000;
+		white-space: nowrap;
+}
+
+.upperInputLabel {
+		position: absolute;
+		right: 10px;
+		bottom: 0px;
+		color: #ff0000;
+		white-space: nowrap;
+}
+
+.lowerOutputLabel {
+		position: absolute;
+		left: 10px;
+		white-space: nowrap;
+}
+
+.upperOutputLabel {
+		position: absolute;
+		left: 10px;
+		bottom: 0px;
+		white-space: nowrap;
 }
