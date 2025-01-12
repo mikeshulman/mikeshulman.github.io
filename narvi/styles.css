@@ -348,3 +348,10 @@ body {
 		bottom: 0px;
 		white-space: nowrap;
 }
+
+/* About text */
+
+.about {
+		font-size: 18px;
+}
+

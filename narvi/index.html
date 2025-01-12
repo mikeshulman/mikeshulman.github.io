@@ -86,7 +86,9 @@
         </div>
         <div style="text-align: center; margin-top: 30px">
           <button id="cancelChooseLevel" style="font-size: 16px; display: none">Cancel</button>
-          <button id="clearHistory" style="font-size: 16px">Clear History</button><br/>
+          <button id="clearHistory" style="font-size: 16px">Clear History</button>
+          <button id="about" style="font-size: 16px">About</button>
+          <br/>
         </div>
       </div>
     </div>
@@ -135,6 +137,70 @@
         <input type="text" id="ascribe" style="width: 100%"/>
         <div style="text-align: center; margin-top: 30px">
           <button id="submitAscribe" style="font-size: 16px">Submit</button><br/>
+        </div>
+      </div>
+    </div>
+
+    <div id="aboutBG" class="modalbg">
+      <div class="modal" style="width: 1000px; height: 800px; background-color: #cccccc">
+        <h1 style="text-align: center">Welcome to Narvi!</h1>
+        <div style="height: 650px; overflow-y: scroll; background-color: #ffffff; padding: 10px">
+          <h2>What is Narvi?</h2>
+          <p class="about">
+            Narvi is a game where you prove abstract theorems in classical predicate logic by connecting boxes with wires.
+            It's a fun collection of puzzles, and also an educational tool for learning to write proofs.
+            There are over a hundred levels, divided into three worlds of propositional logic, quantifiers, and negation, each with several stages.
+            There is no requirement that you do the levels in order; you can skip around, but when learning I recommend you proceed mostly in order.
+          </p>
+          <h2>How do the graphs work?</h2>
+          <p class="about">
+            In each level you have some number (perhaps zero) of "assumptions" or "givens" that appear in boxes on the left, and one desired "conclusion" appearing in a box on the right.
+            Your goal is to connect the assumptions to the conclusion: logic flows from left to right.
+          </p>
+          <p class="about">
+            You can add new boxes to the graph by dragging and dropping them from the "palette" bar on the left; more options will be added to the palette as you progress through the levels.
+            Each box has some number of "output ports" on the right and "input ports" on the left.
+            You can drag a connection from any output port to any input port, as long as they are labeled by the same statement or value.
+            Not every output port needs to be used, but every input port must have something coming into it for the proof to be correct.
+            Some boxes also give you "local assumptions" that act like output ports, but can only be used to prove the corresponding "subgoal" input port.
+          </p>
+          <p class="about">
+            When your proof checks, the conclusion will turn green, as will that level in the level-selection dialog.
+            Unconnected input ports, and incorrectly connected wires, are colored red.
+            Wires carrying "values" rather than truth are colored blue.
+          </p>
+          <h2>Where do these graphs come from?</h2>
+          <p class="about">
+            Many people have represented proofs graphically, starting with Charles Sanders Peirce, one of the inventors of predicate logic.
+            More recently, the physicist Roger Penrose introduced string diagrams for tensors, mathematicians such as Andre Joyal and Ross Street formalized them to describe monoidal categories, and the logician Jean-Yves Girard introduced proof nets for linear logic.
+            The specific style of graphical proofs used by Narvi is based heavily on the graphs used by <a href="https://incredible.pm/">The Incredible Proof Machine</a> by Joachim Breitner, but enhanced with value-carrying wires for predicate logic.
+          </p>
+          <h2>What's under the hood?</h2>
+          <p class="about">
+            The underlying proof-checker of Narvi is <a href="https://github.com/mikeshulman/narya">Narya</a>.
+            Narya is an experimental proof assistant for higher-dimensional dependent type theory such as higher observational type theory (a form of homotopy type theory), internally parametric type theory, and displayed type theory.
+            Narvi doesn't currently use very much of the power of Narya, but in principle it could be extended to be a full-fledged graphical proof assistant for dependent type theory using the same core.
+          </p>
+          <p class="about">
+            Narya is written in OCaml, which through the magic of <tt>js_of_ocaml</tt> is compiled to run in your browser underneath Narvi.
+            If you'd like to try Narya directly, its ordinary interactive mode is also available in your browser as <a href="https://mikeshulman.github.io/jsnarya/">jsNarya</a>.
+            If Narvi and jsNarya whet your appetite, you can download the full Narya proof assistant to run locally on your computer from its <a href="https://github.com/mikeshulman/narya">github page</a>.
+          </p>
+          <h2>Narya? Narvi?</h2>
+          <p class="about">
+            Narya is the third elven-ring in J.R.R. Tolkien's Legendarium: the ring of fire, that was given by C&iacute;rdan the Shipwright to Gandalf when he arrived in Middle-Earth.
+            Narvi was a dwarven craftsman who, together with Celebrimbor, made the Doors of Durin at the West-gate of Moria.
+          </p>
+          <h2>Who wrote all this?</h2>
+          <p class="about">
+            Mike Shulman, a mathematician at the University of San Diego.
+            <a href="https://home.sandiego.edu/~shulman/">Here's</a> my web page.
+            Send me your questions, suggestions, complaints, and other thoughts!
+            I look forward to hearing from you.
+          </p>
+        </div>
+        <div style="text-align: center; margin-top: 30px">
+          <button id="doneAbout" style="font-size: 16px">Back</button><br/>
         </div>
       </div>
     </div>
