@@ -190,23 +190,26 @@ body {
 		z-index: 6;
 }
 
-/* The X button on each rule */
+/* The X button on each rule and connector */
 
 .closebutton {
-    position: absolute;
-    top: -10px;
-    right: 5px;
-    width: 20px;
-    height: 20px;
     background-color: red;
     color: white;
     border-radius: 50%;
     text-align: center;
     line-height: 20px;
     cursor: pointer;
-    display: none;
 		font-family: sans-serif;
 		font-weight: bold;
+    width: 20px;
+    height: 20px;
+    display: none;
+}
+
+.rule .closebutton {
+    position: absolute;
+    top: -10px;
+    right: 5px;
 }
 
 .rule:hover .closebutton {
