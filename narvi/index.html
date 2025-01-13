@@ -85,6 +85,12 @@
         <div id="worlds">
         </div>
         <div style="text-align: center; margin-top: 30px">
+          <input name="difficulty" type="radio" value="0" checked="1"> Novice &nbsp;&nbsp;
+          <input name="difficulty" type="radio" value="1"> Adept &nbsp;&nbsp;
+          <input name="difficulty" type="radio" value="2"> Expert &nbsp;&nbsp;
+          <input name="difficulty" type="radio" value="3"> Master
+        </div>
+        <div style="text-align: center; margin-top: 30px">
           <button id="cancelChooseLevel" style="font-size: 16px; display: none">Cancel</button>
           <button id="clearHistory" style="font-size: 16px">Clear History</button>
           <button id="about" style="font-size: 16px">About</button>
@@ -97,18 +103,24 @@
       <div class="modal">
         <h3 style="text-align: center">What do you want to prove?</h3>
         <span id="setLevelWarning" style="display: none">(Choosing a new level clears any existing proof)</span>
-        <p>Parameters, with types (one per line):</p>
+        <p>Parameters, as <tt>name : type</tt>, one per line:</p>
         <textarea id="parameters" style="width: 100%" rows="3"></textarea>
         <div id="paramPalette"></div>
-        <p>Variables, with types (one per line):</p>
+        <p>Variables, as <tt>name : type</tt>, one per line:</p>
         <textarea id="variables" style="width: 100%" rows="3"></textarea>
         <div id="varPalette"></div>
-        <p>Hypotheses (one per line):</p>
+        <p>Hypotheses, types only (i.e. propositions), one per line:</p>
         <textarea id="hypotheses" style="width: 100%" rows="3"></textarea>
         <div id="hypPalette"></div>
         <p>Conclusion:</p>
         <input type="text" id="conclusion" style="width: 100%; font-family: monospace"/>
         <div id="conclPalette"></div>
+        <div style="text-align: center; margin-top: 30px">
+          <input name="customDifficulty" type="radio" value="0" checked="1"> Novice &nbsp;&nbsp;
+          <input name="customDifficulty" type="radio" value="1"> Adept &nbsp;&nbsp;
+          <input name="customDifficulty" type="radio" value="2"> Expert &nbsp;&nbsp;
+          <input name="customDifficulty" type="radio" value="3"> Master 
+        </div>
         <div style="text-align: center; margin-top: 30px">
           <button id="submitLevel" style="font-size: 16px">Submit</button>
           <button id="backLevel" style="font-size: 16px">Back</button>
@@ -149,8 +161,9 @@
           <p class="about">
             Narvi is a game where you prove abstract theorems in classical predicate logic by connecting boxes with wires.
             It's a fun collection of puzzles, and also an educational tool for learning to write proofs.
-            There are over a hundred levels, divided into three worlds of propositional logic, quantifiers, and negation, each with several stages.
+            There are over a hundred levels, divided into four "worlds" with several stages each, and four difficulty settings.
             There is no requirement that you do the levels in order; you can skip around, but when learning I recommend you proceed mostly in order.
+            You can also create custom levels.
           </p>
           <h2>How do the graphs work?</h2>
           <p class="about">
@@ -159,15 +172,37 @@
           </p>
           <p class="about">
             You can add new boxes to the graph by dragging and dropping them from the "palette" bar on the left; more options will be added to the palette as you progress through the levels.
-            Each box has some number of "output ports" on the right and "input ports" on the left.
-            You can drag a connection from any output port to any input port, as long as they are labeled by the same statement or value.
-            Not every output port needs to be used, but every input port must have something coming into it for the proof to be correct.
-            Some boxes also give you "local assumptions" that act like output ports, but can only be used to prove the corresponding "subgoal" input port.
+            Each box represents a "proof rule", and has some number of "output ports" on the right and "input ports" on the left.
+            You can drag a connection from any output port to any input port, as long as they "carry" the same statement or value.
+            Wires carrying "values" rather than "truth" are colored blue.
+            Some boxes also give you "local assumptions" that act like output ports, but can only be used to prove the corresponding "subgoal" input port; these are matched visually with "brackets".
           </p>
           <p class="about">
-            When your proof checks, the conclusion will turn green, as will that level in the level-selection dialog.
-            Unconnected input ports, and incorrectly connected wires, are colored red.
-            Wires carrying "values" rather than truth are colored blue.
+            For the proof to be correct, every input port must have something coming into it, and all wires must connect ports carrying the same statement or value.
+            (Not every output port needs to be used, but usually most will be.)
+            When your proof is correct, the conclusion will turn green, as will that level in the level-selection dialog.
+            If you make a mistake, you can remove boxes and wires by clicking on the red "X" that appears when you hover over them.
+          </p>
+          <h2>What do the difficulty levels mean?</h2>
+          <p class="about">
+            At Novice difficulty, all unconnected ports are labeled with the statement or value they carry (red for input ports, which are missing something to connect to them); all wires are labeled with the statement or value they carry; and incorrectly connected wires are colored red.
+            A proof novice benefits from the most possible guidance when learning to write proofs.
+          </p>
+          <p class="about">
+            At Adept difficulty, wires are still labeled and colored once they are connected, but ports are not labeled.
+            A proof adept must be able to tell, given the labels on some wires are connected to a proof rule box, what statements must appear on the other wires.
+            But since correctly connected wires are labeled, it is sufficient to apply this skill "locally" at each proof rule to decide on the next rules to use.
+          </p>
+          <p class="about">
+            At Expert difficulty, wires are not labeled either.
+            A proof expert can carry the "global" proof in their head, remembering (or calculating, if necessary) what the labels must be on each wire.
+            (For larger proofs arising in mathematical practice, this is unreasonable even for experts; but for the small proofs in Narvi it is feasible, and it's good to practice holding at least part of a proof in your head that's larger than a single rule.)
+            However, incorrectly connected wires are still colored red, so you get immediate feedback about whether your memory or calculation was correct; and if not, where it went wrong.
+          </p>
+          <p class="about">
+            At Master difficulty, incorrectly connected wires are not even colored red any more: the only feedback you get is whether the conclusion turns green!
+            A proof master can not only carry a substantial proof in their head; if they make a mistake, they can work out for themselves where the mistake is and fix it.
+            A word to the wise is enough.
           </p>
           <h2>Where do these graphs come from?</h2>
           <p class="about">
@@ -175,27 +210,28 @@
             More recently, the physicist Roger Penrose introduced string diagrams for tensors, mathematicians such as Andre Joyal and Ross Street formalized them to describe monoidal categories, and the logician Jean-Yves Girard introduced proof nets for linear logic.
           </p>
           <p class="about">
-            The specific style of graphical proofs used by Narvi is based heavily on the graphs used by <a href="https://incredible.pm/">The Incredible Proof Machine</a> by Joachim Breitner.
+            The specific style of graphical proofs used by Narvi is based heavily on the graphs used by <a href="https://incredible.pm/">The Incredible Proof Machine</a> by Joachim Breitner, which is essentially a graphical representation of Gentzen-style <a href="https://en.wikipedia.org/wiki/Natural_deduction">natural deduction</a>.
             The Incredible Proof Machine is, well, incredible!
             In particular, relative to other graphical languages, it introduced "expandable brackets" for local assumptions.
-            Although perhaps obvious in hindsight, I believe these are a big improvement over anything previously available, at least for informal and pedagogical purposes.
-            Narvi borrows not only these expandable brackets but other aspects of the look and feel from The Incredible Proof Machine.
+            Although perhaps obvious in hindsight (they correspond to "discharged assumptions" in Gentzen's trees), I believe these are a big improvement over anything previously available, at least for informal and pedagogical purposes.
+            Narvi borrows not only these expandable brackets, but other aspects of the look and feel of The Incredible Proof Machine.
           </p>
           <p class="about">
             The main enhancement added by Narvi over what The Incredible Proof Machine can do is <i>value-carrying wires</i> for predicate logic.
             The Incredible Proof Machine does support predicate logic, but the elements are managed only by unification rather than visually with wires (and also its rules are single-sorted and don't support empty domains).
             Narvi also includes some other features that could probably also be added to The Incredible Proof Machine with less work, such as if-and-only-if blocks and classical proof by contradiction.
-            In addition, although Narvi is currently restricted to proofs about abstract sets, propositions, and predicates like The Incredible Proof Machine, since its underlying logic is a full-spectrum dependent type theory it can potentially be extended to handle proofs using algebra and mathemaical induction.
+            In addition, although Narvi is currently restricted to proofs about abstract sets, propositions, and predicates like The Incredible Proof Machine, since its underlying logic is a full-spectrum dependent type theory, it should be possible to extend it to proofs using algebra and mathematical induction.
           </p>
           <p class="about">
             On the other hand, the underlying logic of the The Incredible Proof Machine is more configurable than Narvi's.
             For instance, in addition to predicate logic, it supports Hilbert systems and NAND calculus.
-            If you like Narvi, you should check it out too!
+            Moreover, The Incredible Proof Machine has other nice features that Narvi currently lacks: it saves your proof for each level when you switch to another one, and its unification algorithm can infer labels for more wires and ports in an incomplete proof than Narvi's (in fact, Narvi doesn't currently use unification <i>per se</i> at all, only bidirectional typechecking).
+            If you like Narvi, you should check out <a href="https://incredible.pm/">The Incredible Proof Machine</a> too!
           </p>
           <h2>What's under the hood?</h2>
           <p class="about">
             The underlying proof-checker of Narvi is <a href="https://github.com/mikeshulman/narya">Narya</a>.
-            Narya is an experimental proof assistant for higher-dimensional dependent type theory such as higher observational type theory (a form of homotopy type theory), internally parametric type theory, and displayed type theory.
+            Narya is an experimental proof assistant for higher-dimensional dependent type theory such as higher observational type theory (HOTT) and internally parametric type theories.
             Narvi doesn't currently use very much of the power of Narya, but in principle it could be extended to be a full-fledged graphical proof assistant for dependent type theory using the same core.
           </p>
           <p class="about">
@@ -205,8 +241,8 @@
           </p>
           <h2>Narya? Narvi?</h2>
           <p class="about">
-            Narya is the third elven-ring in J.R.R. Tolkien's Legendarium: the ring of fire, that was given by C&iacute;rdan the Shipwright to Gandalf when he arrived in Middle-Earth.
-            Narvi was a dwarven craftsman who, together with Celebrimbor, made the Doors of Durin at the West-gate of Moria.
+            Narya is the third elven-ring in J.R.R. Tolkien's Legendarium: the ring of fire (which is <i>HOT(T)</i>), that was given by C&iacute;rdan the Shipwright to Gandalf when he arrived in Middle-Earth.
+            Narvi was a dwarven craftsman who, together with Celebrimbor, made the Doors of Durin at the West-gate of Moria with their intricate <i>pictures</i>.
           </p>
           <h2>Who wrote all this?</h2>
           <p class="about">
