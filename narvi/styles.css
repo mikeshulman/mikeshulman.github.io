@@ -268,7 +268,7 @@ body {
 		width: 100%;
 		display: grid;
 		grid-template-columns: repeat(12, 70px);
-		grid-auto-rows: 40px;
+		grid-auto-rows: 50px;
 		gap: 10px;
 		padding: 5px;
 }
@@ -286,6 +286,7 @@ body {
 .level {
 		display: flex;
 		align-items: center;
+		text-align: center;
 		justify-content: center;
 		padding: 3px;
 		background-color: #dddddd;
@@ -294,6 +295,10 @@ body {
 		border: 2px solid #000000;
 		border-radius: 5px;
     cursor: pointer;
+}
+
+.stars {
+		color: gold;
 }
 
 #selectLevel {
