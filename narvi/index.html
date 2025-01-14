@@ -87,8 +87,7 @@
         <div style="text-align: center; margin-top: 30px">
           <input name="difficulty" type="radio" value="0" checked="1"> Novice &nbsp;&nbsp;
           <input name="difficulty" type="radio" value="1"> Adept &nbsp;&nbsp;
-          <input name="difficulty" type="radio" value="2"> Expert &nbsp;&nbsp;
-          <input name="difficulty" type="radio" value="3"> Master
+          <input name="difficulty" type="radio" value="2"> Master
         </div>
         <div style="text-align: center; margin-top: 30px">
           <button id="cancelChooseLevel" style="font-size: 16px; display: none">Cancel</button>
@@ -118,8 +117,7 @@
         <div style="text-align: center; margin-top: 30px">
           <input name="customDifficulty" type="radio" value="0" checked="1"> Novice &nbsp;&nbsp;
           <input name="customDifficulty" type="radio" value="1"> Adept &nbsp;&nbsp;
-          <input name="customDifficulty" type="radio" value="2"> Expert &nbsp;&nbsp;
-          <input name="customDifficulty" type="radio" value="3"> Master 
+          <input name="customDifficulty" type="radio" value="2"> Master
         </div>
         <div style="text-align: center; margin-top: 30px">
           <button id="submitLevel" style="font-size: 16px">Submit</button>
@@ -161,8 +159,8 @@
           <p class="about">
             Narvi is a game where you prove abstract theorems in classical predicate logic by connecting boxes with wires.
             It's a fun collection of puzzles, and also an educational tool for learning to write proofs.
-            There are over a hundred levels, divided into four "worlds" with several stages each, and four difficulty settings.
-            There is no requirement that you do the levels in order; you can skip around, but when learning I recommend you proceed mostly in order, starting with the easier difficulty settings.
+            There are over a hundred levels, divided into four "worlds" with several stages each, and three difficulty settings.
+            There is no requirement that you do the levels in order; you can skip around, but when learning I recommend you proceed mostly in order (see below for advice on choosing the difficulty).
             You can also create custom levels.
           </p>
           <h2>How do the graphs work?</h2>
@@ -180,29 +178,33 @@
           <p class="about">
             For the proof to be correct, every input port must have something coming into it, and all wires must connect ports carrying the same statement or value.
             (Not every output port needs to be used, but usually most will be.)
-            When your proof is correct, the conclusion will turn green, as will that level in the level-selection dialog, with one to four stars awarded according to the difficulty setting.
+            When your proof is correct, the conclusion will turn green, as will that level in the level-selection dialog, with one to three stars awarded according to the difficulty setting.
             If you make a mistake, you can remove boxes and wires by clicking on the red "X" that appears when you hover over them.
           </p>
-          <h2>What do the difficulty levels mean?</h2>
+          <h2>What do the difficulty settings mean?</h2>
           <p class="about">
-            At Novice difficulty (★☆☆☆), all unconnected ports are labeled with the statement or value they carry (red for input ports, which are missing something to connect to them); all wires are labeled with the statement or value they carry; and incorrectly connected wires are colored red.
+            At Novice difficulty (★☆☆), all unconnected ports are labeled with the statement or value they carry (red for input ports, which are missing something to connect to them); all wires are labeled with the statement or value they carry; and incorrectly connected wires are colored red.
             A proof novice benefits from the most possible guidance when learning to write proofs.
           </p>
           <p class="about">
-            At Adept difficulty (★★☆☆), wires are still labeled and colored once they are connected, but ports are not labeled.
-            A proof adept can tell, given the labels on some wires are connected to a proof rule box, what statements must appear on the other wires.
-            But since correctly connected wires are labeled, it is sufficient to apply this skill "locally" at each proof rule to decide on the next rules to use.
+            At Adept difficulty (★★☆), ports are not labeled, and wires are not labeled automatically.
+            The user is prompted for a label for each wire, and it is an error if the label is incorrect.
+            Wires with incorrect labels, or that are incorrectly connected, are colored red, and prevent the proof from being marked correct.
+            A proof adept can tell, given the labels on some wires connected to a proof rule box, what statements must appear on the other wires.
+            But since the correctness is displayed for each wire by color, it is sufficient to apply this skill "locally" at each proof rule to decide on the next rules to use and how to label the wires.
           </p>
           <p class="about">
-            At Expert difficulty (★★★☆), wires are not labeled either.
-            A proof expert can carry the "global" proof in their head, remembering (or calculating, if necessary) what the labels must be on each wire.
-            (For larger proofs arising in mathematical practice, this is unreasonable even for experts; but for the small proofs in Narvi it is feasible, and it's good to practice holding at least part of a proof in your head that's larger than a single rule.)
-            However, incorrectly connected wires are still colored red, so you get immediate feedback about whether your memory or calculation was correct; and if not, where it went wrong.
-          </p>
-          <p class="about">
-            At Master difficulty (★★★★), incorrectly connected wires are not even colored red any more: the only feedback you get is whether the conclusion turns green!
-            A proof master can not only carry a substantial proof in their head; if they make a mistake, they can work out for themselves where the mistake is and fix it.
+            At Master difficulty (★★★), incorrectly connected or labeled wires are not colored red any more.
+            The only information you get about the correctness of the proof is whether the conclusion turns green!
+            A proof master can not only tell how to use rules and how they will change the proof state, but can find their own errors if necessary.
             (A word to the wise is enough.)
+          </p>
+          <p class="about">
+            I recommend that you work up in difficulty setting "one world behind" your most advanced levels.
+            For instance, start by completing Proposition World at Novice setting.
+            Then complete Advanced Proposition World at Novice setting more or less in parallel with going back and re-doing Proposition World at Adept setting.
+            Next, work on Quantifier World at Novice setting, Advanced Proposition World at Adept setting, and Proposition World at Master setting; and so on.
+            By inserting a delay before you go back to re-do each level at a higher difficulty, you will reinforce your learning and make the challenge more meaningful.
           </p>
           <h2>Where do these graphs come from?</h2>
           <p class="about">
