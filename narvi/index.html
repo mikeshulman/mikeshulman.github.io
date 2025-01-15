@@ -9,11 +9,12 @@
     <script src="narvi.bc.js"></script>
 </head>
 <body>
-    <div id="palette">
-        <div class="basic intro rule" id="andI" data-rule="andI">∧</div>
-        <div class="basic elim rule" id="andE" data-rule="andE">∧</div>
-        <div class="basic intro rule" id="orI1" data-rule="orI1">∨<sub>L</sub></div>
-        <div class="basic intro rule" id="orI2" data-rule="orI2">∨<sub>R</sub></div>
+    <div id="paletteBar">
+      <div id="palette">
+        <div class="basic logical intro rule" id="andI" data-rule="andI">∧</div>
+        <div class="basic logical elim rule" id="andE" data-rule="andE">∧</div>
+        <div class="basic logical intro rule" id="orI1" data-rule="orI1">∨<sub>L</sub></div>
+        <div class="basic logical intro rule" id="orI2" data-rule="orI2">∨<sub>R</sub></div>
         <div class="container rule" id="orE" data-rule="orE">
           <div class="mid bar"></div>
           <div class="doubleleft assumption"><div class="subgoallabel">∨</div></div>
@@ -28,7 +29,7 @@
           <div class="bottomleft"></div>
           <div class="bottomright"></div>
         </div>
-        <div class="basic elim rule" id="impE" data-rule="impE">⇒</div>
+        <div class="basic logical elim rule" id="impE" data-rule="impE">⇒</div>
         <div class="container rule" id="iffI" data-rule="iffI">
           <div class="mid bar"></div>
           <div class="doubleleft assumption"></div>
@@ -36,10 +37,10 @@
           <div class="mid midleft"></div>
           <div class="mid midright"></div>
         </div>
-        <div class="basic elim rule" id="iffE1" data-rule="iffE1">⇔<sub>L→R</sub></div>
-        <div class="basic elim rule" id="iffE2" data-rule="iffE2">⇔<sub>R→L</sub></div>
-        <div class="basic intro rule" id="exI" data-rule="exI"> ∃</div>
-        <div class="basic elim rule" id="exE" data-rule="exE">∃</div>
+        <div class="basic logical elim rule" id="iffE1" data-rule="iffE1">⇔<sub>L→R</sub></div>
+        <div class="basic logical elim rule" id="iffE2" data-rule="iffE2">⇔<sub>R→L</sub></div>
+        <div class="basic logical intro rule" id="exI" data-rule="exI"> ∃</div>
+        <div class="basic logical elim rule" id="exE" data-rule="exE">∃</div>
         <div class="container rule" id="allI" data-rule="allI">
           <div class="bottom bar"></div>
           <div class="singleleft assumption"></div>
@@ -47,8 +48,8 @@
           <div class="bottomleft"></div>
           <div class="bottomright"></div>
         </div>
-        <div class="basic elim rule" id="allE" data-rule="allE">∀</div>
-        <div class="basic elim rule" id="negE" data-rule="negE">¬</div>
+        <div class="basic logical elim rule" id="allE" data-rule="allE">∀</div>
+        <div class="basic logical elim rule" id="negE" data-rule="negE">¬</div>
         <div class="container rule" id="negI" data-rule="negI">
           <div class="bottom bar"></div>
           <div class="singleleft assumption"></div>
@@ -63,14 +64,18 @@
           <div class="bottomleft"></div>
           <div class="bottomright"></div>
         </div>
-        <div class="basic rule" style="text-align: left" id="botE" data-rule="botE">⊥</div>
-        <div class="basic rule" style="text-align: right" id="topI" data-rule="topI">⊤</div>
-        <!-- <div class="basic rule" style="text-align: center" id="asc" data-rule="asc">🏷</div> -->
-        <div style="position: absolute; bottom: 10px" id="buttons"><button id="selectLevel">Select Level</button></div>
+        <div class="basic logical rule" style="text-align: left" id="botE" data-rule="botE">⊥</div>
+        <div class="basic logical rule" style="text-align: right" id="topI" data-rule="topI">⊤</div>
+      </div>
+        <!-- <div class="basic logical rule" style="text-align: center" id="asc" data-rule="asc">🏷</div> -->
+      <div style="height: 60px; display: flex; align-items: end" id="buttons"><button id="selectLevel">Select Level</button></div>
     </div>
     <div id="diagram"></div>
 
-    <div id="currentLevel"></div>
+    <div id="currentLevelAndDifficulty">
+      <div id="currentLevel"></div>
+      <div id="currentDifficulty"></div>
+    </div>
 
     <div id="levelChooseBG" class="modalbg">
       <div class="modal" id="levelChooseModal">
@@ -84,16 +89,18 @@
         <p id="chooseLevelWarning" style="display: none; text-align: center">(Choosing a new level clears any existing proof)</p>
         <div id="worlds">
         </div>
-        <div style="text-align: center; margin-top: 30px">
-          <input name="difficulty" type="radio" value="0" checked="1"> Novice &nbsp;&nbsp;
-          <input name="difficulty" type="radio" value="1"> Adept &nbsp;&nbsp;
-          <input name="difficulty" type="radio" value="2"> Master
-        </div>
-        <div style="text-align: center; margin-top: 30px">
-          <button id="cancelChooseLevel" style="font-size: 16px; display: none">Cancel</button>
-          <button id="clearHistory" style="font-size: 16px">Clear History</button>
-          <button id="about" style="font-size: 16px">About</button>
-          <br/>
+        <div id="chooseLevelButtons">
+          <div style="text-align: center; margin-top: 30px">
+            <input name="difficulty" type="radio" value="0" checked="1"> Novice &nbsp;&nbsp;
+            <input name="difficulty" type="radio" value="1"> Adept &nbsp;&nbsp;
+            <input name="difficulty" type="radio" value="2"> Master
+          </div>
+          <div style="text-align: center; margin-top: 30px">
+            <button id="cancelChooseLevel" style="font-size: 16px; display: none">Cancel</button>
+            <button id="clearHistory" style="font-size: 16px">Clear History</button>
+            <button id="about" style="font-size: 16px">About</button>
+            <br/>
+          </div>
         </div>
       </div>
     </div>
@@ -135,7 +142,8 @@
         <p>New variable:</p>
         <input type="text" id="newvar" style="width: 100%"/>
         <div style="text-align: center; margin-top: 30px">
-          <button id="submitVariable" style="font-size: 16px">Submit</button><br/>
+          <button id="submitVariable" style="font-size: 16px">Submit</button>
+          <button id="cancelVariable" style="font-size: 16px">Cancel</button><br/>
         </div>
       </div>
     </div>
@@ -145,8 +153,21 @@
         <h3 style="text-align: center">Ascribe a wire</h3>
         <p>Ascribe this wire to the following:</p>
         <input type="text" id="ascribe" style="width: 100%"/>
+        <div id="ascPalette"></div>
         <div style="text-align: center; margin-top: 30px">
           <button id="submitAscribe" style="font-size: 16px">Submit</button><br/>
+        </div>
+      </div>
+    </div>
+
+    <div id="wireBG" class="modalbg">
+      <div class="modal">
+        <h3 style="text-align: center">Label this wire</h3>
+        <p>Label this wire with the following set or proposition:</p>
+        <input type="text" id="wire" style="width: 100%"/>
+        <div id="wirePalette"></div>
+        <div style="text-align: center; margin-top: 30px">
+          <button id="submitWire" style="font-size: 16px">Submit</button><br/>
         </div>
       </div>
     </div>
@@ -161,7 +182,7 @@
             It's a fun collection of puzzles, and also an educational tool for learning to write proofs.
             There are over a hundred levels, divided into four "worlds" with several stages each, and three difficulty settings.
             There is no requirement that you do the levels in order; you can skip around, but when learning I recommend you proceed mostly in order (see below for advice on choosing the difficulty).
-            You can also create custom levels.
+            You can also create and solve custom levels.
           </p>
           <h2>How do the graphs work?</h2>
           <p class="about">
@@ -170,41 +191,53 @@
           </p>
           <p class="about">
             You can add new boxes to the graph by dragging and dropping them from the "palette" bar on the left; more options will be added to the palette as you progress through the levels.
-            Each box represents a "proof rule", and has some number of "output ports" on the right and "input ports" on the left.
-            You can drag a connection from any output port to any input port, as long as they "carry" the same statement or value.
+            Each box represents a "proof rule", and has some number of "input ports" on the left and "output ports" on the right.
+            You can drag a connection from any output port to any input port, and it will be valid as long as they "carry" the same statement or value.
             Wires carrying "values" rather than "truth" are colored blue.
             Some boxes also give you "local assumptions" that act like output ports, but can only be used to prove the corresponding "subgoal" input port; these are matched visually with "brackets".
           </p>
           <p class="about">
             For the proof to be correct, every input port must have something coming into it, and all wires must connect ports carrying the same statement or value.
             (Not every output port needs to be used, but usually most will be.)
-            When your proof is correct, the conclusion will turn green, as will that level in the level-selection dialog, with one to three stars awarded according to the difficulty setting.
+            When your proof is correct, the conclusion and background will turn green, as will that level in the level-selection dialog, with one to three stars awarded according to the difficulty setting.
             If you make a mistake, you can remove boxes and wires by clicking on the red "X" that appears when you hover over them.
           </p>
           <h2>What do the difficulty settings mean?</h2>
           <p class="about">
-            At Novice difficulty (★☆☆), all unconnected ports are labeled with the statement or value they carry (red for input ports, which are missing something to connect to them); all wires are labeled with the statement or value they carry; and incorrectly connected wires are colored red.
-            A proof novice benefits from the most possible guidance when learning to write proofs.
+            At Novice difficulty (★☆☆), all unconnected ports are labeled with the statement or value they carry (red for input ports, which are missing something to connect to them).
+            In addition, all wires are labeled with the statement or value they carry, and incorrectly connected wires are colored red.
+            <i>A proof novice benefits from the most possible guidance when learning to write proofs.</i>
           </p>
           <p class="about">
-            At Adept difficulty (★★☆), ports are not labeled, and wires are not labeled automatically.
-            The user is prompted for a label for each wire, and it is an error if the label is incorrect.
-            Wires with incorrect labels, or that are incorrectly connected, are colored red, and prevent the proof from being marked correct.
-            A proof adept can tell, given the labels on some wires connected to a proof rule box, what statements must appear on the other wires.
-            But since the correctness is displayed for each wire by color, it is sufficient to apply this skill "locally" at each proof rule to decide on the next rules to use and how to label the wires.
+            At Adept difficulty (★★☆), ports are not labeled, and most wires are not labeled automatically.
+            Instead, you are prompted for a label for each wire.
+            (The exceptions are wires connected directly to a hypothesis or the conclusion, since it is obvious what those should be labeled, and wires that carry values.)
+            Wires with incorrect labels, or that are incorrectly connected, are colored red, and both prevent the proof from being marked correct.
+            In particular, even if your wires would be a correct proof in Novice mode, it is rejected if you labeled them incorrectly.
+            <i>A proof adept knows how each proof rule affects the current givens and goals, whenever it is used.</i>
           </p>
           <p class="about">
-            At Master difficulty (★★★), incorrectly connected or labeled wires are not colored red any more.
-            The only information you get about the correctness of the proof is whether the conclusion turns green!
-            A proof master can not only tell how to use rules and how they will change the proof state, but can find their own errors if necessary.
-            (A word to the wise is enough.)
+            At Master difficulty (★★★), you are still required to label all the wires yourself (with the same exceptions), but incorrectly connected or labeled wires are not colored red any more.
+            The only information you get about the correctness of the proof (including your labels on the wires) is whether the conclusion turns green!
+            <i>A proof master can find and fix their own mistakes.</i>
           </p>
           <p class="about">
             I recommend that you work up in difficulty setting "one world behind" your most advanced levels.
             For instance, start by completing Proposition World at Novice setting.
-            Then complete Advanced Proposition World at Novice setting more or less in parallel with going back and re-doing Proposition World at Adept setting.
-            Next, work on Quantifier World at Novice setting, Advanced Proposition World at Adept setting, and Proposition World at Master setting; and so on.
+            Then complete Advanced Proposition World at Novice setting.  Then go back and re-do Proposition World at Adept setting.
+            Next, work on Quantifier World at Novice setting, Advanced Proposition World at Adept setting, and Proposition World at Master setting, and so on.
             By inserting a delay before you go back to re-do each level at a higher difficulty, you will reinforce your learning and make the challenge more meaningful.
+            Similarly, when you are working through a given world at a higher difficulty setting, it would be easy to "cheat" by doing each level again at Novice setting and then copying the proof and wire labels from your short-term memory at the higher difficulty, but you won't learn as much that way.
+          </p>
+          <p class="about">
+            It's worth noting that whether a given wire is colored red as "incorrect" in Novice and Adept modes can depend not only on that wire and its label, but on the other wires in the diagram.
+            A wire in an incomplete proof may be colored black at first, but become red when <i>another</i> wire is added, since the second wire gives additional information about what must be carried by the first wire.
+          </p>
+          <p class="about">
+            Somewhat more surprisingly, the opposite can also happen: a wire can be colored red at first but become black when another wire is added.
+            This generally happens if you connect a "proposition" wire to a quantifier rule (∀ or ∃) without first connecting the corresponding value wire, since until Narvi knows what the value is, it can't tell that the proposition wire is correct.
+            This is arguably a bug, since in other contexts "not yet known to be incorrect" wires are colored black rather than red, but the prospects of fixing it in the near future are slim, due to Narya's current lack of a full unification algorithm.
+            Just make a habit of always connecting the value (blue) wires first.
           </p>
           <h2>Where do these graphs come from?</h2>
           <p class="about">
@@ -221,7 +254,7 @@
           <p class="about">
             The main enhancement added by Narvi over what The Incredible Proof Machine can do is <i>value-carrying wires</i> for predicate logic.
             The Incredible Proof Machine does support predicate logic, but the elements are managed only by unification rather than visually with wires (and also its rules are single-sorted and don't support empty domains).
-            Narvi also includes some other features that could probably also be added to The Incredible Proof Machine with less work, such as if-and-only-if blocks and classical proof by contradiction.
+            Narvi also includes some other features that could probably also be added to The Incredible Proof Machine with less work, such as if-and-only-if blocks and classical proof by contradiction, and some additional pedagogical and gamification features such as Adept and Master difficulty levels.
             In addition, although Narvi is currently restricted to proofs about abstract sets, propositions, and predicates like The Incredible Proof Machine, since its underlying logic is a full-spectrum dependent type theory, it should be possible to extend it to proofs using algebra and mathematical induction.
           </p>
           <p class="about">

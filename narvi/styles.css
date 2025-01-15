@@ -6,11 +6,19 @@ body {
 
 /* The two fundamental panes */
 
-#palette {
-    width: 85px;
+#paletteBar {
     background-color: #f0f0f0;
     padding: 10px;
     box-sizing: border-box;
+		width: 100px;
+		display: flex;
+		flex-direction: column;
+}
+
+#palette {
+		padding-top: 5px;
+		flex: 1;
+		overflow-y: auto;
 }
 
 #diagram {
@@ -33,13 +41,20 @@ body {
 }
 
 .basic {
-    min-width: 50px;						/* Allow it to grow with large contents */
 		background-color: #dddddd;
 		padding: 0px 8px 0px 8px;
 		border-radius: 5px;
 		border-style: solid;
 		border-width: 1px;
 }		
+
+.logical {
+		width: 42px;
+}
+
+.contextual {
+		min-width: 42px;
+}
 
 .container {
 		width: 58px;								/* 58 = 4 + 50 + 4 for the padding */
@@ -308,11 +323,22 @@ body {
 		text-align: center;
 }
 
-#currentLevel {
+#currentLevelAndDifficulty {
 		position: absolute;
 		top: 10px;
 		right: 10px;
 		font-family: sans-serif;
+}
+
+#levelChooseModal {
+		position: relative;
+}
+
+#chooseLevelButtons {
+		position: absolute;
+		bottom: 30px;
+		left: 50%;
+		transform: translateX(-50%);
 }
 
 /* labels on connections */
@@ -325,6 +351,10 @@ body {
 
 .connLabelValue {
 		color: #0000ff;
+}
+
+.userLabel {
+    cursor: pointer;
 }
 
 /* labels on endpoints */
