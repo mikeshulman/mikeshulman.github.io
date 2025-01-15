@@ -86,14 +86,14 @@
           <div id="forwardWorld" style="cursor: pointer">▶</div>
           <div></div>
         </div>
-        <p id="chooseLevelWarning" style="display: none; text-align: center">(Choosing a new level clears any existing proof)</p>
+        <p id="chooseLevelWarning" style="visibility: hidden; text-align: center">(Choosing a new level clears any existing proof)</p>
         <div id="worlds">
         </div>
         <div id="chooseLevelButtons">
-          <div style="text-align: center; margin-top: 30px">
-            <input name="difficulty" type="radio" value="0" checked="1"> Novice &nbsp;&nbsp;
-            <input name="difficulty" type="radio" value="1"> Adept &nbsp;&nbsp;
-            <input name="difficulty" type="radio" value="2"> Master
+          <div style="text-align: center; margin-top: 30px; display: flex">
+            <div id="noviceRadio" class="difficultyRadio"><div id="noviceBox">☐</div>&nbsp;Novice</div>
+            <div id="adeptRadio" class="difficultyRadio"><div id="adeptBox">☐</div>&nbsp;Adept</div>
+            <div id="masterRadio" class="difficultyRadio"><div id="masterBox">☐</div>&nbsp;Master</div>
           </div>
           <div style="text-align: center; margin-top: 30px">
             <button id="cancelChooseLevel" style="font-size: 16px; display: none">Cancel</button>
@@ -199,18 +199,18 @@
           <p class="about">
             For the proof to be correct, every input port must have something coming into it, and all wires must connect ports carrying the same statement or value.
             (Not every output port needs to be used, but usually most will be.)
-            When your proof is correct, the conclusion and background will turn green, as will that level in the level-selection dialog, with one to three stars awarded according to the difficulty setting.
+            When your proof is correct, the conclusion and background will turn a color (according to the difficulty level), as will that level in the level-selection dialog, with one to three stars awarded according to the difficulty setting.
             If you make a mistake, you can remove boxes and wires by clicking on the red "X" that appears when you hover over them.
           </p>
           <h2>What do the difficulty settings mean?</h2>
           <p class="about">
-            At Novice difficulty (★☆☆), all unconnected ports are labeled with the statement or value they carry (red for input ports, which are missing something to connect to them).
+            At Novice difficulty (<span id="aboutNovice" style="padding:1px">★☆☆</span>), all unconnected ports are labeled with the statement or value they carry (red for input ports, which are missing something to connect to them).
             In addition, all wires are labeled with the statement or value they carry, and incorrectly connected wires are colored red.
             At any given point during the construction of a proof, the labeled output ports can be thought of as "givens" (known or assumed facts), and the red-labeled input ports can be thought of as "goals" (statements to prove).
             <i>A proof novice can choose the rule to apply next, guided by the logical structure of the givens and the goals.</i>
           </p>
           <p class="about">
-            At Adept difficulty (★★☆), ports are not labeled, and most wires are not labeled automatically.
+            At Adept difficulty (<span id="aboutAdept" style="padding:1px">★★☆</span>), ports are not labeled, and most wires are not labeled automatically.
             Instead, you are prompted for a label for each wire.
             (The exceptions are wires connected directly to a hypothesis or the conclusion, since it is obvious what those should be labeled, and wires that carry values.)
             Wires with incorrect labels, or that are incorrectly connected, are colored red, and both prevent the proof from being marked correct.
@@ -218,8 +218,8 @@
             <i>A proof adept knows how each applied rule affects the current givens and goals.</i>
           </p>
           <p class="about">
-            At Master difficulty (★★★), you are still required to label all the wires yourself (with the same exceptions), but incorrectly connected or labeled wires are not colored red any more.
-            The only information you get about the correctness of the proof (including your labels on the wires) is whether the conclusion turns green!
+            At Master difficulty (<span id="aboutMaster" style="padding:1px">★★★</span>), you are still required to label all the wires yourself (with the same exceptions), but incorrectly connected or labeled wires are not colored red any more.
+            The only information you get about the correctness of the proof (including your labels on the wires) is whether the conclusion turns black!
             <i>A proof master can plan and execute an entire proof alone, and find and fix their own mistakes.</i>
           </p>
           <p class="about">
