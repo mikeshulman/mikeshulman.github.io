@@ -202,7 +202,7 @@
             You can add new boxes to the graph by dragging and dropping them from the "palette" bar on the left; more options will be added to the palette as you progress through the levels.
             Each box represents a "proof rule", and has some number of "input ports" on the left and "output ports" on the right.
             You can drag a connection from any output port to any input port, and it will be valid as long as they "carry" the same statement or value.
-            Wires carrying "values" rather than "truth" are colored blue.
+            Wires carrying "values" rather than "truth" are colored gold.
             Some boxes also give you "local assumptions" that act like output ports, but can only be used to prove the corresponding "subgoal" input port; these are matched visually with "brackets".
           </p>
           <p class="about">
@@ -247,7 +247,7 @@
             Somewhat more surprisingly, the opposite can also happen: a wire can be colored red at first but become black when another wire is added.
             This generally happens if you connect a "proposition" wire to a quantifier rule (∀ or ∃) without first connecting the corresponding "value" wire, since until Narvi knows what the value is, it can't tell that the proposition wire is correct.
             This is arguably a bug, since in other contexts "not yet known to be incorrect" wires are colored black rather than red, but the prospects of fixing it in the near future are slim, due to Narya's current lack of a full unification algorithm.
-            Just make a habit of always connecting the value (blue) wires first.
+            Just make a habit of always connecting the value (gold) wires first.
           </p>
           <h2>Where do these graphs come from?</h2>
           <p class="about">
