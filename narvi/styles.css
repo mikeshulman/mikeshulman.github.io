@@ -267,6 +267,20 @@ body {
     cursor: pointer;
 }
 
+#shortcuts {
+		margin-left: auto;
+		margin-right: auto;
+}
+
+.symbol {
+		text-align: center;
+}
+
+.keyseq {
+		font-family: monospace;
+		padding-left: 20px;
+}
+
 /* Level choices */
 
 #worlds {
