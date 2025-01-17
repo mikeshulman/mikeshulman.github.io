@@ -79,7 +79,7 @@
 
     <div id="levelChooseBG" class="modalbg">
       <div class="modal" id="levelChooseModal">
-        <div style="text-align: center; font-size: 24px; display: grid; grid-template-columns: 1fr 20px 500px 20px 1fr; margin-bottom: 20px">
+        <div style="text-align: center; font-size: 24px; display: grid; grid-template-columns: 1fr 20px 500px 20px 1fr">
           <div></div>
           <div id="backWorld" style="cursor: pointer">◀</div>
           <div id="worldName">Select a level</div>
@@ -87,15 +87,14 @@
           <div></div>
         </div>
         <p id="chooseLevelWarning" style="visibility: hidden; text-align: center">(Choosing a new level clears any existing proof)</p>
-        <div id="worlds">
-        </div>
+        <div id="worlds"></div>
         <div id="chooseLevelButtons">
-          <div style="text-align: center; margin-top: 30px; display: flex">
+          <div style="text-align: center; display: flex">
             <div id="noviceRadio" class="difficultyRadio"><div id="noviceBox">☐</div>&nbsp;Novice</div>
             <div id="adeptRadio" class="difficultyRadio"><div id="adeptBox">☐</div>&nbsp;Adept</div>
             <div id="masterRadio" class="difficultyRadio"><div id="masterBox">☐</div>&nbsp;Master</div>
           </div>
-          <div style="text-align: center; margin-top: 30px">
+          <div style="text-align: center; margin-top: 20px">
             <button id="cancelChooseLevel" style="font-size: 16px; display: none">Cancel</button>
             <button id="clearHistory" style="font-size: 16px">Clear History</button>
             <button id="about" style="font-size: 16px">About</button>
@@ -182,9 +181,9 @@
     </div>
 
     <div id="aboutBG" class="modalbg">
-      <div class="modal" style="width: 1000px; height: 800px; background-color: #cccccc">
+      <div id="aboutModal" class="modal">
         <h1 style="text-align: center">Welcome to Narvi!</h1>
-        <div style="height: 650px; overflow-y: scroll; background-color: #ffffff; padding: 10px">
+        <div style="flex: 1; overflow-y: scroll; background-color: #ffffff; padding: 10px">
           <h2>What is Narvi?</h2>
           <p class="about">
             Narvi is a game where you prove abstract theorems in classical predicate logic by connecting boxes with wires.
@@ -202,7 +201,7 @@
             You can add new boxes to the graph by dragging and dropping them from the "palette" bar on the left; more options will be added to the palette as you progress through the levels.
             Each box represents a "proof rule", and has some number of "input ports" on the left and "output ports" on the right.
             You can drag a connection from any output port to any input port, and it will be valid as long as they "carry" the same statement or value.
-            Wires carrying "values" rather than "truth" are colored gold.
+            Wires carrying "values" rather than "truth" are colored blue.
             Some boxes also give you "local assumptions" that act like output ports, but can only be used to prove the corresponding "subgoal" input port; these are matched visually with "brackets".
           </p>
           <p class="about">
@@ -213,13 +212,13 @@
           </p>
           <h2>What do the difficulty settings mean?</h2>
           <p class="about">
-            At Novice difficulty (<span id="aboutNovice" style="padding:1px">★☆☆</span>), all unconnected ports are labeled with the statement or value they carry (red for input ports, which are missing something to connect to them).
+            At Novice difficulty (<span class="noviceColor" style="padding:1px">★☆☆</span>), all unconnected ports are labeled with the statement or value they carry (red for input ports, which are missing something to connect to them).
             In addition, all wires are labeled with the statement or value they carry, and incorrectly connected wires are colored red.
             At any given point during the construction of a proof, the labeled output ports can be thought of as "givens" (known or assumed facts), and the red-labeled input ports can be thought of as "goals" (statements to prove).
             <i>A proof novice can choose the rule to apply next, guided by the logical structure of the givens and the goals.</i>
           </p>
           <p class="about">
-            At Adept difficulty (<span id="aboutAdept" style="padding:1px">★★☆</span>), ports are not labeled, and most wires are not labeled automatically.
+            At Adept difficulty (<span class="adeptColor" style="padding:1px">★★☆</span>), ports are not labeled, and most wires are not labeled automatically.
             Instead, you are prompted for a label for each wire.
             (The exceptions are wires connected directly to a hypothesis or the conclusion, since it is obvious what those should be labeled, and wires that carry values.)
             Wires with incorrect labels, or that are incorrectly connected, are colored red, and both prevent the proof from being marked correct.
@@ -227,7 +226,7 @@
             <i>A proof adept knows how each applied rule affects the current givens and goals.</i>
           </p>
           <p class="about">
-            At Master difficulty (<span id="aboutMaster" style="padding:1px">★★★</span>), you are still required to label all the wires yourself (with the same exceptions), but incorrectly connected or labeled wires are not colored red any more.
+            At Master difficulty (<span class="masterColor" style="padding:1px">★★★</span>), you are still required to label all the wires yourself (with the same exceptions), but incorrectly connected or labeled wires are not colored red any more.
             The only information you get about the correctness of the proof (including your labels on the wires) is whether the conclusion turns purple!
             <i>A proof master can plan and execute an entire proof alone, and find and fix their own mistakes.</i>
           </p>
@@ -247,7 +246,7 @@
             Somewhat more surprisingly, the opposite can also happen: a wire can be colored red at first but become black when another wire is added.
             This generally happens if you connect a "proposition" wire to a quantifier rule (∀ or ∃) without first connecting the corresponding "value" wire, since until Narvi knows what the value is, it can't tell that the proposition wire is correct.
             This is arguably a bug, since in other contexts "not yet known to be incorrect" wires are colored black rather than red, but the prospects of fixing it in the near future are slim, due to Narya's current lack of a full unification algorithm.
-            Just make a habit of always connecting the value (gold) wires first.
+            Just make a habit of always connecting the value (blue) wires first.
           </p>
           <h2>Where do these graphs come from?</h2>
           <p class="about">

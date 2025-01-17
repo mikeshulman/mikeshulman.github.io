@@ -1,3 +1,56 @@
+/* Difficulty colors */
+
+@property --novice-color {
+		syntax: "<color>";
+}
+
+@property --adept-color {
+		syntax: "<color>";
+}
+
+@property --master-color {
+		syntax: "<color>";
+}
+
+@property --novice-bg {
+		syntax: "<color>";
+}
+
+@property --adept-bg {
+		syntax: "<color>";
+}
+
+@property --master-bg {
+		syntax: "<color>";
+}
+
+/* These are re-set by Javascript, to ensure consistency. */
+:root {
+		--novice-color: black;
+		--adept-color: black;
+		--master-color: black;
+		--novice-bg: white;
+		--adept-bg: white;
+		--master-bg: white;
+}
+
+.noviceColor {
+		color: var(--novice-color);
+		background-color: var(--novice-bg);
+}
+
+.adeptColor {
+		color: var(--adept-color);
+		background-color: var(--adept-bg);
+}
+
+.masterColor{
+		color: var(--master-color);
+		background-color: var(--master-bg);
+}
+
+/* Body */
+
 body {
     display: flex;
     height: 100vh;
@@ -284,13 +337,11 @@ body {
 /* Level choices */
 
 #worlds {
+		flex: 1;
+		overflow-x: clip;
+		overflow-y: auto;
 		display: grid;
-		grid-template-area: "inner-worlds";
-		place-items: center;
-}
-
-.world {
-		grid-area: inner-worlds;
+		align-items: top;
 }
 
 .stage {
@@ -326,10 +377,6 @@ body {
     cursor: pointer;
 }
 
-.stars {
-		color: gold;
-}
-
 #selectLevel {
 		font-size: 18px;
 		white-space: normal;
@@ -345,14 +392,15 @@ body {
 }
 
 #levelChooseModal {
+		max-height: 90%;
 		position: relative;
+		display: flex;
+		flex-direction: column;
 }
 
 #chooseLevelButtons {
-		position: absolute;
-		bottom: 30px;
-		left: 50%;
-		transform: translateX(-50%);
+		margin-left: auto;
+		margin-right: auto;
 }
 
 /* Difficulty choices */
@@ -419,7 +467,16 @@ body {
 
 /* About text */
 
+#aboutModal {
+		max-width: 90%;
+		width: 1000px;
+		height: 80%;
+		background-color: #cccccc;
+    box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
+}
+
 .about {
 		font-size: 18px;
 }
-
