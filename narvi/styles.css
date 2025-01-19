@@ -416,6 +416,14 @@ body {
 		font-family: sans-serif;
 }
 
+#reduceDifficulty {
+		display: none;
+		border: 1px solid #000000;
+		border-radius: 2px;
+		background-color: #eeeeee;
+		cursor: pointer;
+}
+
 #levelChooseModal {
 		max-height: 90%;
 		position: relative;

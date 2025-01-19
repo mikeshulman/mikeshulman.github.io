@@ -102,6 +102,7 @@
     <div id="currentLevelAndDifficulty">
       <div id="currentLevel"></div>
       <div id="currentDifficulty"></div>
+      <div id="reduceDifficulty"></div>
     </div>
 
     <div id="levelChooseBG" class="modalbg">
@@ -240,9 +241,10 @@
           </p>
           <h2>What do the difficulty settings mean?</h2>
           <p class="about">
-            At Novice difficulty (<span class="noviceColor" style="padding:1px">★☆☆</span>), all unconnected ports are labeled with the statement or value they carry (red for input ports, which are missing something to connect to them).
-            In addition, all wires are labeled with the statement or value they carry, and incorrectly connected wires are colored red.
+            At Novice difficulty (<span class="noviceColor" style="padding:1px">★☆☆</span>), all unconnected ports are automatically labeled with the statement or value they carry (red for input ports, which are missing something to connect to them).
+            In addition, all wires are automatically labeled with the statement or value they carry, and incorrectly connected wires are colored red.
             At any given point during the construction of a proof, the labeled output ports can be thought of as "givens" (known or assumed facts), and the red-labeled input ports can be thought of as "goals" (statements to prove).
+            (However, not all givens are available for all goals; hypotheses introduced on the left side of a bracket are only usable to prove the corresponding subgoal on the right side of that bracket.)
             <i>A proof novice can choose the rule to apply next, guided by the logical structure of the givens and the goals.</i>
           </p>
           <p class="about">
@@ -250,7 +252,7 @@
             Instead, you are prompted for a label for each wire.
             (The exceptions are wires connected directly to a hypothesis or the conclusion, since it is obvious what those should be labeled, and wires that carry values.)
             Wires with incorrect labels, or that are incorrectly connected, are colored red, and both prevent the proof from being marked correct.
-            In particular, even if your wires would be a correct proof in Novice mode, it is rejected if you labeled them incorrectly.
+            In particular, even if your proof would be correct in Novice mode according to the connections only, it is rejected in Adept mode if you labeled the wires incorrectly.
             <i>A proof adept knows how each applied rule affects the current givens and goals.</i>
           </p>
           <p class="about">
@@ -265,16 +267,18 @@
             Next, work on Quantifier World at Novice setting, Advanced Proposition World at Adept setting, and Proposition World at Master setting, and so on.
             By inserting a delay before you go back to re-do each level at a higher difficulty, you will reinforce your learning and make the challenge more meaningful.
             Similarly, when you are working through a given world at a higher difficulty setting, it would be easy to "cheat" by doing each level again at Novice setting and then copying the proof and wire labels from your short-term memory at the higher difficulty, but you won't learn as much that way.
+            If you start working on a higher difficulty setting and get stuck, you can downgrade the difficulty without losing your partial proof using the button in the upper-right corner, but of course then you'll only get credit for completing the level at the lower difficulty.
           </p>
           <p class="about">
             It's worth noting that whether a given wire is colored red as "incorrect" in Novice and Adept modes can depend not only on that wire and its label, but on the other wires in the diagram.
             A wire in an incomplete proof may be colored black at first, but become red when <i>another</i> wire is added, since the second wire gives additional information about what must be carried by the first wire.
+            A valid proof can also not contain cycles (loops), and of course a cycle usually involves more than one wire.
           </p>
           <p class="about">
             Somewhat more surprisingly, the opposite can also happen: a wire can be colored red at first but become black when another wire is added.
             This generally happens if you connect a "proposition" wire to a quantifier rule (∀ or ∃) without first connecting the corresponding "value" wire, since until Narvi knows what the value is, it can't tell that the proposition wire is correct.
             This is arguably a bug, since in other contexts "not yet known to be incorrect" wires are colored black rather than red, but the prospects of fixing it in the near future are slim, due to Narya's current lack of a full unification algorithm.
-            Just make a habit of always connecting the value (blue) wires first.
+            Just make a habit of always connecting the value (blue) wires first, or don't worry about the temporarily red wire if you do it the other way.
           </p>
           <h2>Where do these graphs come from?</h2>
           <p class="about">
