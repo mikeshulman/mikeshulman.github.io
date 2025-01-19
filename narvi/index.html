@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Narvi</title>
     <link rel="stylesheet" href="styles.css">
-    <script src=" https://cdn.jsdelivr.net/npm/interactjs@1.10.27/dist/interact.min.js "></script>
     <script src="narvi.bc.js"></script>
 </head>
 <body>
@@ -21,6 +20,12 @@
           <div class="doubleright subgoal"></div>
           <div class="mid midleft"></div>
           <div class="mid midright"></div>
+          <img src="resize-handle-right.svg" width="15" height="24" class="resize-image" style="right: -3px; bottom: -5px">
+          <img src="resize-handle-right.svg" width="15" height="24" class="resize-image" style="left: -1px; bottom: -5px; transform: scaleX(-1)">
+          <img src="resize-handle-right.svg" width="15" height="24" class="resize-image" style="right: -3px; top: -7px; transform: scaleY(-1)">
+          <img src="resize-handle-right.svg" width="15" height="24" class="resize-image" style="left: -1px; top: -7px; transform: scaleX(-1) scaleY(-1)">
+          <div class="resize-handle-right"></div>
+          <div class="resize-handle-left"></div>
         </div>
         <div class="container rule" id="impI" data-rule="impI">
           <div class="bottom bar"></div>
@@ -28,6 +33,10 @@
           <div class="singleright subgoal"><div class="subgoallabel">⇒</div></div>
           <div class="bottomleft"></div>
           <div class="bottomright"></div>
+          <img src="resize-handle-right.svg" width="15" height="24" class="resize-image" style="right: -3px; bottom: -5px">
+          <img src="resize-handle-right.svg" width="15" height="24" class="resize-image" style="left: -1px; bottom: -5px; transform: scaleX(-1)">
+          <div class="resize-handle-right"></div>
+          <div class="resize-handle-left"></div>
         </div>
         <div class="basic logical elim rule" id="impE" data-rule="impE">⇒</div>
         <div class="container rule" id="iffI" data-rule="iffI">
@@ -36,6 +45,12 @@
           <div class="doubleright subgoal"><div class="subgoallabel">⇔</div></div>
           <div class="mid midleft"></div>
           <div class="mid midright"></div>
+          <img src="resize-handle-right.svg" width="15" height="24" class="resize-image" style="right: -3px; bottom: -5px">
+          <img src="resize-handle-right.svg" width="15" height="24" class="resize-image" style="left: -1px; bottom: -5px; transform: scaleX(-1)">
+          <img src="resize-handle-right.svg" width="15" height="24" class="resize-image" style="right: -3px; top: -7px; transform: scaleY(-1)">
+          <img src="resize-handle-right.svg" width="15" height="24" class="resize-image" style="left: -1px; top: -7px; transform: scaleX(-1) scaleY(-1)">
+          <div class="resize-handle-right"></div>
+          <div class="resize-handle-left"></div>
         </div>
         <div class="basic logical elim rule" id="iffE1" data-rule="iffE1">⇔<sub>L→R</sub></div>
         <div class="basic logical elim rule" id="iffE2" data-rule="iffE2">⇔<sub>R→L</sub></div>
@@ -47,6 +62,10 @@
           <div class="singleright subgoal"><div class="subgoallabel">∀</div></div>
           <div class="bottomleft"></div>
           <div class="bottomright"></div>
+          <img src="resize-handle-right.svg" width="15" height="24" class="resize-image" style="right: -3px; bottom: -5px">
+          <img src="resize-handle-right.svg" width="15" height="24" class="resize-image" style="left: -1px; bottom: -5px; transform: scaleX(-1)">
+          <div class="resize-handle-right"></div>
+          <div class="resize-handle-left"></div>
         </div>
         <div class="basic logical elim rule" id="allE" data-rule="allE">∀</div>
         <div class="basic logical elim rule" id="negE" data-rule="negE">¬</div>
@@ -56,6 +75,10 @@
           <div class="singleright subgoal"><div class="subgoallabel">¬</div></div>
           <div class="bottomleft"></div>
           <div class="bottomright"></div>
+          <img src="resize-handle-right.svg" width="15" height="24" class="resize-image" style="right: -3px; bottom: -5px">
+          <img src="resize-handle-right.svg" width="15" height="24" class="resize-image" style="left: -1px; bottom: -5px; transform: scaleX(-1)">
+          <div class="resize-handle-right"></div>
+          <div class="resize-handle-left"></div>
         </div>
         <div class="container rule" id="negnegI" data-rule="negnegI">
           <div class="bottom bar"></div>
@@ -63,6 +86,10 @@
           <div class="singleright subgoal"></div>
           <div class="bottomleft"></div>
           <div class="bottomright"></div>
+          <img src="resize-handle-right.svg" width="15" height="24" class="resize-image" style="right: -3px; bottom: -5px">
+          <img src="resize-handle-right.svg" width="15" height="24" class="resize-image" style="left: -1px; bottom: -5px; transform: scaleX(-1)">
+          <div class="resize-handle-right"></div>
+          <div class="resize-handle-left"></div>
         </div>
         <div class="basic logical rule" style="text-align: left" id="botE" data-rule="botE">⊥</div>
         <div class="basic logical rule" style="text-align: right" id="topI" data-rule="topI">⊤</div>
@@ -203,6 +230,7 @@
             You can drag a connection from any output port to any input port, and it will be valid as long as they "carry" the same statement or value.
             Wires carrying "values" rather than "truth" are colored blue.
             Some boxes also give you "local assumptions" that act like output ports, but can only be used to prove the corresponding "subgoal" input port; these are matched visually with "brackets".
+            Boxes with brackets can be resized horizontally by dragging the left or right edges; I encourage you to make them big enough that the "subproofs" fit inside and all wires travel only left-to-right.
           </p>
           <p class="about">
             For the proof to be correct, every input port must have something coming into it, and all wires must connect ports carrying the same statement or value.

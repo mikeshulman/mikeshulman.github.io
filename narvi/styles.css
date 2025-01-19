@@ -244,6 +244,31 @@ body {
     opacity: 0.5;
 }
 
+/* Resizing bracket rules */
+
+.resize-image {
+		position: absolute;
+		display: none;							/* Don't display in palette */
+}
+
+.resize-handle-right {
+      width: 20px;
+      height: 100%;
+      position: absolute;
+      right: 0;
+			/* Added later by javascript, so it doesn't happen in the palette */
+      /* cursor: ew-resize; */
+}
+
+.resize-handle-left {
+      width: 20px;
+      height: 100%;
+      position: absolute;
+      left: 0;
+			/* Added later by javascript, so it doesn't happen in the palette */
+      /* cursor: ew-resize; */
+}
+
 /* jsPlumb objects */
 
 .jtk-connector {
