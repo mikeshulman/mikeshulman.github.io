@@ -148,10 +148,10 @@
         <p>Conclusion:</p>
         <input type="text" id="conclusion" style="width: 100%; font-family: monospace"/>
         <div id="conclPalette"></div>
-        <div style="text-align: center; margin-top: 30px">
-          <input name="customDifficulty" type="radio" value="0" checked="1"> Novice &nbsp;&nbsp;
-          <input name="customDifficulty" type="radio" value="1"> Adept &nbsp;&nbsp;
-          <input name="customDifficulty" type="radio" value="2"> Master
+        <div style="text-align: center; display: flex; margin-left: auto; margin-right: auto; margin-top: 20px">
+          <div id="noviceRadioCustom" class="difficultyRadio"><div id="noviceBoxCustom">☐</div>&nbsp;Novice</div>
+          <div id="adeptRadioCustom" class="difficultyRadio"><div id="adeptBoxCustom">☐</div>&nbsp;Adept</div>
+          <div id="masterRadioCustom" class="difficultyRadio"><div id="masterBoxCustom">☐</div>&nbsp;Master</div>
         </div>
         <div style="text-align: center; margin-top: 30px">
           <button id="submitLevel" style="font-size: 16px">Submit</button>
@@ -330,6 +330,28 @@
         </div>
         <div style="text-align: center; margin-top: 30px">
           <button id="doneAbout" style="font-size: 16px">Close</button><br/>
+        </div>
+      </div>
+    </div>
+
+    <div id="loginBG" class="modalbg">
+      <div class="modal">
+        <h3 style="text-align: center">Login to Narvi</h3>
+        <div style="text-align: center; margin: 5px; color: #ff0000; visibility: hidden" id="loginError">
+          Login error
+        </div>
+        <div style="display: flex; flex-direction: row; padding: 5px">
+          <div style="display: flex; flex-direction: column; padding: 5px">
+            <div style="padding: 5px">Email address:</div>
+            <div style="padding: 5px">Course ID:</div>
+          </div>
+          <div style="display: flex; flex-direction: column; padding: 5px">
+            <input style="margin: 5px" type="text" id="loginEmail">
+            <input style="margin: 5px" type="text" id="loginCourse">
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 20px">
+          <button id="submitLogin" style="font-size: 16px">Submit</button><br/>
         </div>
       </div>
     </div>
