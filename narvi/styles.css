@@ -331,6 +331,10 @@ body {
     width: 400px;
 }
 
+.hint {
+		display: none;
+}
+
 /* Unicode insert buttons */
 
 .unicode-button {

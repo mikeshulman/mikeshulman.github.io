@@ -345,6 +345,95 @@
       </div>
     </div>
 
+    <div id="hintBG" class="modalbg">
+      <div id="wiresHint" class="modal hint" style="width: 600px">
+        <p>
+          The boxes on the left are <i>assumptions</i> or <i>hypotheses</i>.
+          The box on the right is the desired <i>conclusion</i>.
+          Your goal is to connect them with wires so that all the labels match, thereby proving the conclusion.
+        </p>
+        <p>
+          A dot on the right of a box is an <i>output port</i>.
+          If I know what the label of the wire coming out of an output port would be, I'll label it in black:
+          <img src="hints/hypothesis.png" style="margin-left: auto; margin-right:auto; display:block">
+          A dot on the left of a box is an <i>input port</i>.
+          If I know what the label of the wire coming into of an input port must be, I'll label it in red:
+          <img src="hints/conclusion.png" style="margin-left: auto; margin-right:auto; display:block">
+          Create a wire connection by clicking on an output port and dragging it to an input port:
+          <img src="hints/wire.png" style="margin-left: auto; margin-right:auto; display:block">
+        </p>
+      </div>
+      <div id="muxHint" class="modal hint">
+        Every input port must have a wire connected to it, but you don't have to use every output port.
+      </div>
+      <div id="introHint" class="modal hint" style="width: 600px">
+        <p>
+          You can add new boxes to the proof by dragging them from the palette on the left.
+        </p>
+        <p>
+          If a box has a symbol on the <i>right</i>, it is called a <i>prove rule</i>, and you should connect its <i>output port</i> to something first.
+          That will give me more information about what its other ports must be.
+          The output port should be connected to an input port whose label uses the same symbol:
+          <img src="hints/andI.png" style="margin-left: auto; margin-right:auto; display:block">
+          Therefore, if you have an open input port using some symbol, you probably want to add a box that has that symbol on the right.
+        </p>
+      </div>
+      <div id="elimHint" class="modal hint" style="width: 600px">
+          If a box has a symbol on the <i>left</i>, it is called a <i>use rule</i>, and you should connect one of its <i>input ports</i> to something first.
+          That will give me more information about what its other ports must be.
+          The input port should be connected to an output port whose label uses the same symbol:
+          <img src="hints/andE.png" style="margin-left: auto; margin-right:auto; display:block">
+          Therefore, if you have an open output port using some symbol, you may want to add a box that has that symbol on the left.
+      </div>
+      <div id="multiHint" class="modal hint">
+        If you have both input and output ports using symbols, you'll probably want to add both "prove rules" and "use rules", and then try to connect them up in the middle.
+      </div>
+      <div id="bracketHint" class="modal hint" style="width: 600px">
+        Remember that a "prove rule" with its symbol on the right should have its <i>output port</i> to something using the same symbol:
+        <img src="hints/impI.png" style="margin-left: auto; margin-right:auto; display:block">
+        When a box has a "bracket" like this, the output coming from the left inside the bracket is a <i>hypothetical assumption</i>, which can <i>only</i> be used to derive the corresponding <i>subgoal</i> on the right of the same bracket.
+        <img src="hints/bracket.png" style="margin-left: auto; margin-right:auto; display:block">
+        You can also stretch the bracket by clicking on either side and dragging it out, so that the entire <i>subproof</i> fits inside.
+        <img src="hints/longimpI.png" style="margin-left: auto; margin-right:auto; display:block">
+      </div>
+      <div id="impHint" class="modal hint" style="width: 600px">
+        When a "use rule" with its symbol on the left has more than one input port, the one you should connect first is the one whose shape involves that symbol:
+        <img src="hints/impE.png" style="margin-left: auto; margin-right:auto; display:block">
+      </div>
+      <div id="headHint" class="modal hint" style="width: 600px">
+        If a port label involves more than one symbol, the one <i>outside</i> all the parentheses tells you which kind of box to connect it to first.
+        <img src="hints/head.png" style="margin-left: auto; margin-right:auto; display:block">
+      </div>
+      <div id="orHint" class="modal hint" style="width: 600px">
+        This box needs <i>both</i> its input and output ports connected right away, but only the input port requires a specific symbol; the output port can connect to anything.
+        <img src="hints/orE.png" style="margin-left: auto; margin-right:auto; display:block">
+        Now there are two brackets.
+        Each hypothetical assumption on the left can only be used to derive the subgoal at the right on the <i>same side</i>.
+        As before, you can resize the box so that the entire subproofs fit inside.
+      </div>
+      <div id="valueHint" class="modal hint" style="width: 600px">
+        Blue ports and wires carry <i>values</i>, and are labeled by the name of the value along with the set it belongs to:
+        <img src="hints/value.png" style="margin-left: auto; margin-right:auto; display:block">
+        means the value <i>a</i> belongs to the set <i>A</i>.
+      </div>
+      <div id="variableHint" class="modal hint">
+        When you add a box that introduces a new hypothetical value, you need to name that value with a new variable, which can't be the same as any other variable name.
+      </div>
+      <div id="negationHint" class="modal hint" style="width: 630px">
+        When using a negation, either input port can be the negated statement, and either one can be connected first:
+        <div style="margin-left: auto; margin-right:auto; display:block">
+          <img src="hints/neg1.png">
+          <img src="hints/neg2.png">
+          <img src="hints/neg3.png">
+          <img src="hints/neg4.png">
+        </div>
+      </div>
+      <div id="contradictionHint" class="modal hint" style="width: 600px">
+        Any statement at all can be proven by contradiction:
+        <img src="hints/contradiction.png" style="margin-left: auto; margin-right:auto; display:block">
+      </div>
+    </div>
+
     <script src="main.bundle.js"></script>
 </body>
 </html>
