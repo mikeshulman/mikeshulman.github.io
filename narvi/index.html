@@ -92,6 +92,7 @@
       <div id="currentLevel"></div>
       <div id="currentDifficulty"></div>
       <div id="reduceDifficulty"></div>
+      <div id="showHint">Show Hint</div>
     </div>
 
     <div id="levelChooseBG" class="modalbg">
@@ -377,6 +378,9 @@
           <img src="hints/andI.png" style="margin-left: auto; margin-right:auto; display:block">
           Therefore, if you have an open input port using some symbol, you probably want to add a box that has that symbol on the right.
         </p>
+        <p>
+          The symbol ∧ means "and".  Mnemonic: it looks like a capital "A" for And, or like a lowercase "n" as in "salt 'n pepper".
+        </p>
       </div>
       <div id="elimHint" class="modal hint" style="width: 600px">
           If a box has a symbol on the <i>left</i>, it is called a <i>use rule</i>, and you should connect one of its <i>input ports</i> to something first.
@@ -388,6 +392,11 @@
       <div id="multiHint" class="modal hint">
         If you have both input and output ports using symbols, you'll probably want to add both "prove rules" and "use rules", and then try to connect them up in the middle.
       </div>
+      <div id="impHint" class="modal hint" style="width: 600px">
+        When a "use rule" with its symbol on the left has more than one input port, the one you should connect first is the one whose shape involves that symbol:
+        <img src="hints/impE.png" style="margin-left: auto; margin-right:auto; display:block">
+        The symbol ⇒ means "implies", so that P⇒Q means "P implies Q" or equivalently "if P, then Q".
+      </div>
       <div id="bracketHint" class="modal hint" style="width: 600px">
         Remember that a "prove rule" with its symbol on the right should have its <i>output port</i> connected to something using the same symbol:
         <img src="hints/impI.png" style="margin-left: auto; margin-right:auto; display:block">
@@ -396,37 +405,62 @@
         You can also stretch the bracket by clicking on either side and dragging it out, so that the entire <i>subproof</i> fits inside.
         <img src="hints/longimpI.png" style="margin-left: auto; margin-right:auto; display:block">
       </div>
-      <div id="impHint" class="modal hint" style="width: 600px">
-        When a "use rule" with its symbol on the left has more than one input port, the one you should connect first is the one whose shape involves that symbol:
-        <img src="hints/impE.png" style="margin-left: auto; margin-right:auto; display:block">
-      </div>
       <div id="headHint" class="modal hint" style="width: 600px">
         If a port label involves more than one symbol, the one <i>outside</i> all the parentheses tells you which kind of box to connect it to first.
         <img src="hints/head.png" style="margin-left: auto; margin-right:auto; display:block">
       </div>
-      <div id="orHint" class="modal hint" style="width: 600px">
+      <div id="orHint" class="modal hint">
+        The symbol ∨ means "or".  Mnemonic: it's the dual of ∧.
+      </div>
+      <div id="casesHint" class="modal hint" style="width: 600px">
         This box needs <i>both</i> its input and output ports connected right away, but only the input port requires a specific symbol; the output port can connect to anything.
         <img src="hints/orE.png" style="margin-left: auto; margin-right:auto; display:block">
         Now there are two brackets.
         Each hypothetical assumption on the left can only be used to derive the subgoal at the right on the <i>same side</i>.
         As before, you can resize the box so that the entire subproofs fit inside.
       </div>
+      <div id="iffHint" class="modal hint">
+        The symbol ⇔ means "if and only if".  By definition, P⇔Q means (P⇒Q)∧(Q⇒P).
+      </div>
+      <div id="topHint" class="modal hint">
+        The symbol ⊤ mean "true".  Mnemonic: it looks like a capital "T" for True.
+      </div>
+      <div id="botHint" class="modal hint">
+        The symbol ⊥ means "false" or "a contradiction".
+        Mnemonic: it's the dual of ⊤.
+      </div>
       <div id="valueHint" class="modal hint" style="width: 600px">
-        Blue ports and wires carry <i>values</i>, and are labeled by the name of the value along with the set it belongs to:
-        <img src="hints/value.png" style="margin-left: auto; margin-right:auto; display:block">
-        means the value <i>a</i> belongs to the set <i>A</i>.
+        <p>
+          Blue ports and wires carry <i>values</i>, and are labeled by the name of the value along with the set it belongs to:
+          <img src="hints/value.png" style="margin-left: auto; margin-right:auto; display:block">
+          means the value <i>a</i> belongs to the set <i>A</i>.
+        </p>
+        <p>
+          The symbol ∀ means "for all" or "for every".
+          Menomnic: it's an upside-down "A" for "for all".
+        </p>
       </div>
       <div id="variableHint" class="modal hint">
         When you add a box that introduces a new hypothetical value, you need to name that value with a new variable, which can't be the same as any other variable name.
       </div>
+      <div id="exHint" class="modal hint">
+        The symbol ∃ means "there exists".
+        Mnemonic: it's a backwards "E" for "there Exists".
+      </div>
       <div id="negationHint" class="modal hint" style="width: 630px">
-        When using a negation, either input port can be the negated statement, and either one can be connected first:
-        <div style="margin-left: auto; margin-right:auto; display:block">
-          <img src="hints/neg1.png">
-          <img src="hints/neg2.png">
-          <img src="hints/neg3.png">
-          <img src="hints/neg4.png">
-        </div>
+        <p>
+          The symbol ¬ means "not".
+          Mnemonic: it's like − for negating a number, but instead it negates a statement.
+        </p>
+        <p>
+          When using a negation, either input port can be the negated statement, and either one can be connected first:
+          <div style="margin-left: auto; margin-right:auto; display:block">
+            <img src="hints/neg1.png">
+            <img src="hints/neg2.png">
+            <img src="hints/neg3.png">
+            <img src="hints/neg4.png">
+          </div>
+        </p>
       </div>
       <div id="contradictionHint" class="modal hint" style="width: 600px">
         Any statement at all can be proven by contradiction:
