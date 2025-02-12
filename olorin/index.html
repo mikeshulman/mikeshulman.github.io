@@ -443,6 +443,19 @@
         Each hypothetical assumption on the left can only be used to derive the subgoal at the right on the <i>same side</i>.
         As before, you can resize the box so that the entire subproofs fit inside.
       </div>
+      <div id="casesGoalHint" class="modal hint" style="width: 600px">
+        Remember the output port of this box must be connected right away:
+        <img src="hints/orE.png" style="margin-left: auto; margin-right:auto; display:block">
+        Almost always, this output port should be connected <i>directly</i> to your current goal: either the overall conclusion, or the subgoal of some bracket that this block is inside.
+        Don't use the ∨<sub>L</sub> or ∨<sub>R</sub> blocks too soon and paint yourself into a corner.
+      </div>
+      <div id="multiUseHint" class="modal hint" style="width: 600px">
+        Wires can't go in a loop; that's circular reasoning.
+        <img src="hints/cyclic.png" style="margin-left: auto; margin-right:auto; display:block">
+        Local assumptions also can't "escape" from a bracket; they can only be used to prove the subgoal of that bracket.
+        <img src="hints/escape.png" style="margin-left: auto; margin-right:auto; display:block">
+        However, remember that assumptions you already have can be brought into a bracket from the left, and that assumptions can be used more than once.
+      </div>
       <div id="iffHint" class="modal hint">
         The symbol ⇔ means "if and only if".  By definition, P⇔Q means (P⇒Q)∧(Q⇒P).
       </div>
