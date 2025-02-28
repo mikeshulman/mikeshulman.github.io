@@ -95,9 +95,13 @@
         <div class="basic logical rule" style="text-align: right" id="topI" data-rule="topI">⊤</div>
       </div>
         <!-- <div class="basic logical rule" style="text-align: center" id="asc" data-rule="asc">🏷</div> -->
-      <div style="height: 60px; display: flex; align-items: end" id="buttons"><button id="selectLevel">Select Level</button></div>
+      <div style="height: 80px; display: block; align-items: end" id="buttons">
+        <button id="clearProof" class="proofOption">Clear</button>
+        <button id="selectLevel" class="proofOption">Select Level</button>
+      </div>
     </div>
     <div id="diagram"></div>
+    <div id="selectionBox"></div>
 
     <div id="currentLevelAndDifficulty">
       <div id="currentLevel"></div>
@@ -240,7 +244,12 @@
             You can drag a connection from any output port to any input port, and it will be valid as long as they "carry" the same statement or value.
             Wires carrying "values" rather than "truth" are colored blue.
             Some boxes also give you "local assumptions" that act like output ports, but can only be used to prove the corresponding "subgoal" input port; these are matched visually with "brackets".
-            Boxes with brackets can be resized horizontally by dragging the left or right edges; I encourage you to make them big enough that the "subproofs" fit inside and all wires travel only left-to-right.
+          </p>
+          <p class="about">
+            Boxes already in the graph can be dragged around to organize the proof visually.
+            You can drag multiple boxes at once by first "selecting" several of them with shift-click, or by dragging a rectangle around them, and then dragging one of them.
+            Furthermore, boxes with brackets can be resized horizontally by dragging the left or right edges.
+            I highly encourage you to arrange the boxes so that all the wires travel only left-to-right, and make brackets large enough that the "subproofs" fit entirely inside.
           </p>
           <p class="about">
             For the proof to be correct, every input port must have something coming into it, and all wires must connect ports carrying the same statement or value.
