@@ -91,10 +91,14 @@
           <div class="resize-handle-right"></div>
           <div class="resize-handle-left"></div>
         </div>
-        <div class="basic logical rule" style="text-align: left" id="botE" data-rule="botE">⊥</div>
-        <div class="basic logical rule" style="text-align: right" id="topI" data-rule="topI">⊤</div>
+        <div class="basic logical elim rule" id="botE" data-rule="botE">⊥</div>
+        <div class="basic logical intro rule" id="topI" data-rule="topI">⊤</div>
+        <div class="basic logical rule" style="text-align: center" id="asc" data-rule="asc">🏷</div>
+        <div class="basic logical rule" style="text-align: center; color: #0000ff" id="expr" data-rule="expr">expr</div>
+        <div class="basic logical rule" style="text-align: center" id="alg" data-rule="alg">alg</div>
+        <div class="basic logical elim rule" id="defE" data-rule="defE">def</div>
+        <div class="basic logical intro rule" id="defI" data-rule="defI">def</div>
       </div>
-        <!-- <div class="basic logical rule" style="text-align: center" id="asc" data-rule="asc">🏷</div> -->
       <div style="height: 80px; display: block; align-items: end" id="buttons">
         <button id="clearProof" class="proofOption">Clear</button>
         <button id="selectLevel" class="proofOption">Select Level</button>
@@ -157,15 +161,17 @@
         <p>Conclusion:</p>
         <input type="text" id="conclusion" style="width: 100%; font-family: monospace"/>
         <div id="conclPalette"></div>
-        <div style="text-align: center; display: flex; margin-left: auto; margin-right: auto; margin-top: 20px">
-          <div id="noviceRadioCustom" class="difficultyRadio"><div id="noviceBoxCustom">☐</div>&nbsp;Novice</div>
-          <div id="adeptRadioCustom" class="difficultyRadio"><div id="adeptBoxCustom">☐</div>&nbsp;Adept</div>
-          <div id="masterRadioCustom" class="difficultyRadio"><div id="masterBoxCustom">☐</div>&nbsp;Master</div>
-        </div>
-        <div style="text-align: center; margin-top: 30px">
-          <button id="submitLevel" style="font-size: 16px">Submit</button>
-          <button id="backLevel" style="font-size: 16px">Back</button>
-          <button id="cancelSetLevel" style="font-size: 16px; display: none">Cancel</button><br/>
+        <div style="margin-left: auto; margin-right: auto">
+          <div style="text-align: center; display: flex; margin-top: 20px">
+            <div id="noviceRadioCustom" class="difficultyRadio"><div id="noviceBoxCustom">☐</div>&nbsp;Novice</div>
+            <div id="adeptRadioCustom" class="difficultyRadio"><div id="adeptBoxCustom">☐</div>&nbsp;Adept</div>
+            <div id="masterRadioCustom" class="difficultyRadio"><div id="masterBoxCustom">☐</div>&nbsp;Master</div>
+          </div>
+          <div style="text-align: center; margin-top: 20px">
+            <button id="submitLevel" style="font-size: 16px">Submit</button>
+            <button id="backLevel" style="font-size: 16px">Back</button>
+            <button id="cancelSetLevel" style="font-size: 16px; display: none">Cancel</button><br/>
+          </div>
         </div>
       </div>
     </div>
@@ -192,6 +198,18 @@
         <div id="ascPalette"></div>
         <div style="text-align: center; margin-top: 30px">
           <button id="submitAscribe" style="font-size: 16px">Submit</button><br/>
+        </div>
+      </div>
+    </div>
+
+    <div id="expressionBG" class="modalbg">
+      <div class="modal">
+        <h3 style="text-align: center">Enter an expression</h3>
+        <p>Introduce the following expression, possibly using other available variables:</p>
+        <input type="text" id="expression" style="width: 100%"/>
+        <div id="expressionPalette"></div>
+        <div style="text-align: center; margin-top: 30px">
+          <button id="submitExpression" style="font-size: 16px">Submit</button><br/>
         </div>
       </div>
     </div>
@@ -324,14 +342,14 @@
           </p>
           <h2>What's under the hood?</h2>
           <p class="about">
-            The underlying proof-checker of Olorin is <a href="https://github.com/mikeshulman/narya">Narya</a>.
+            The underlying proof-checker of Olorin is <a href="https://github.com/gwaithimirdain/narya">Narya</a>.
             Narya is an experimental proof assistant for higher-dimensional dependent type theory such as higher observational type theory (HOTT) and internally parametric type theories.
             Olorin doesn't currently use very much of the power of Narya, but in principle it could be extended to be a full-fledged graphical proof assistant for dependent type theory using the same core.
           </p>
           <p class="about">
             Narya is written in OCaml, which through the magic of <tt>js_of_ocaml</tt> is compiled to run in your browser underneath Olorin.
             If you'd like to try Narya directly, its ordinary interactive mode is also available in your browser as <a href="https://mikeshulman.github.io/jsnarya/">jsNarya</a>.
-            If Olorin and jsNarya whet your appetite, you can download the full Narya proof assistant to run locally on your computer from its <a href="https://github.com/mikeshulman/narya">github page</a>.
+            If Olorin and jsNarya whet your appetite, you can download the full Narya proof assistant to run locally on your computer from its <a href="https://github.com/gwaithimirdain/narya">github page</a>.
           </p>
           <h2>Narya? Olorin?</h2>
           <p class="about">
@@ -339,6 +357,9 @@
             Fire is HOT(T).
             Narya was given by C&iacute;rdan the Shipwright to Gandalf when Gandalf arrived in Middle-Earth.
             Olorin is a name of Gandalf himself: a kindly helper who secretly uses the power of Narya to save the world.
+          </p>
+          <p class="about">
+            The Gwaith-i-M&iacute;rdain (I know you didn't ask about them, but that's the name of our <a href="https://github.com/gwaithimirdain/">github organization</a>), or Brotherhood of Jewel-Smiths, were the master Elven craftsmen of the Second Age who created the Rings of Power, including Narya.
           </p>
           <h2>Who wrote all this?</h2>
           <p class="about">
