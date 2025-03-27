@@ -91,13 +91,12 @@
           <div class="resize-handle-right"></div>
           <div class="resize-handle-left"></div>
         </div>
-        <div class="basic logical elim rule" id="botE" data-rule="botE">⊥</div>
-        <div class="basic logical intro rule" id="topI" data-rule="topI">⊤</div>
+        <div class="basic logical rule" style="text-align: left" id="botE" data-rule="botE">⊥</div>
+        <div class="basic logical rule" style="text-align: right" id="topI" data-rule="topI">⊤</div>
         <div class="basic logical rule" style="text-align: center" id="asc" data-rule="asc">🏷</div>
         <div class="basic logical rule" style="text-align: center; color: #0000ff" id="expr" data-rule="expr">expr</div>
         <div class="basic logical rule" style="text-align: center" id="alg" data-rule="alg">alg</div>
-        <div class="basic logical elim rule" id="defE" data-rule="defE">def</div>
-        <div class="basic logical intro rule" id="defI" data-rule="defI">def</div>
+        <div class="basic logical rule" style="text-align: center" id="integral" data-rule="integral">xy=0</div>
       </div>
       <div style="height: 80px; display: block; align-items: end" id="buttons">
         <button id="clearProof" class="proofOption">Clear</button>
@@ -193,7 +192,7 @@
     <div id="ascribeBG" class="modalbg">
       <div class="modal">
         <h3 style="text-align: center">Ascribe a wire</h3>
-        <p>Ascribe this wire to the following:</p>
+        <p>Enter a statement for the label:</p>
         <input type="text" id="ascribe" style="width: 100%"/>
         <div id="ascPalette"></div>
         <div style="text-align: center; margin-top: 30px">
@@ -532,6 +531,41 @@
       <div id="contradictionHint" class="modal hint" style="width: 600px">
         Any statement at all can be proven by contradiction:
         <img src="hints/contradiction.png" style="margin-left: auto; margin-right:auto; display:block">
+      </div>
+      <div id="algebraHint" class="modal hint">
+        The "alg" (for "algebra") block can prove algebraic equations.  If the equation is always true, it doesn't need any inputs.
+      </div>
+      <div id="multiplicationHint" class="modal hint">
+        Multiplication is denoted with a <tt>*</tt> as in many programming languages.
+      </div>
+      <div id="algebra2Hint" class="modal hint">
+        If an equation you want to prove isn't always true, but is true because of some assumptions, you can attach those assumptions as inputs to the algebra block.
+      </div>
+      <div id="algebra3Hint" class="modal hint">
+        You can attach as many assumptions as you need to the input port of the algebra block.
+      </div>
+      <div id="algebra4Hint" class="modal hint">
+        My way to check algebraic equations (called "Buchberger's algorithm") is very general and powerful, but it doesn't produce a human-readable proof.
+        When writing a proof for human readers, you should show the algebraic calculations.
+        Therefore, I recommend that whenever you use an algebra block, you also do the algebra yourself on paper.
+      </div>
+      <div id="neqHint" class="modal hint">
+        The expression "x≠y" means the same as "¬(x=y)".
+      </div>
+      <div id="negateHint" class="modal hint">
+        I need to use different symbols for <i>subtraction</i> (of two numbers) and <i>negation</i> (of one number).
+        I'll write "x−y" for subtraction (you can type this with the ordinary hyphen key) and "∸x" for negation (you can type this with a double hyphen, <tt>--</tt>).
+      </div>
+      <div id="integralHint" class="modal hint" style="width: 600px">
+        One thing the algebra block doesn't "know" is that if the product of two numbers is zero, one or the other of them must be zero.
+        (Indeed, this is not true for all kinds of "number", but it is true for ordinary integers, real numbers, and so on.)
+        If you need this fact, use the block labeled "xy=0": give it the two numbers and an assumption that their product is zero, and you'll get out that either the first is is zero or the second is zero.
+        <img src="hints/xy0.png" style="margin-left: auto; margin-right:auto; display:block">
+      </div>
+      <div id="exprHint" class="modal hint">
+        If you need an input to a "value" port that isn't just a number, use the "expr" block, which will prompt you for an expression.
+        You must connect the input port of that block to all the variables that occur in your expression.
+        <img src="hints/expr.png" style="margin-left: auto; margin-right:auto; display:block">
       </div>
     </div>
 
